@@ -1,7 +1,7 @@
 'use client';
 import { useEffect } from 'react';
 
-const FollowCursor = ({ color = '#cca300' }) => {
+const FollowCursor = ({ color = '#c29b00ff' }) => {
   useEffect(() => {
     let canvas;
     let context;

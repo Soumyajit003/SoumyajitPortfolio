@@ -9,7 +9,7 @@ const Floating = () => {
           initial={{ y: 50, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 1, delay: 0.5 }}
-          className=" cursor-default cursor-pointer hover:text-white transition duration-400"
+          className=" cursor-default cursor-pointer hover:text-white transition duration-200"
           href="mailto:[soumya.bera003@gmail.com]"
         >
           soumya.bera003@gmail.com

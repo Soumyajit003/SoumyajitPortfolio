@@ -24,23 +24,26 @@ const Technology = () => {
               { name: "CSS", icon: assets.css },
               { name: "React", icon: assets.reactpng },
               { name: "Tailwind", icon: assets.tailwind },
-              { name: "Javascript", icon: assets.js },
-              { name: "Typescript", icon: assets.typescript },
-              { name: "Frammer", icon: assets.frammer }
+              { name: "Frammer", icon: assets.frammer },
+              { name: "Redux", icon: assets.redux }
             ]
           },
           {
             title: "Backend",
             items: [
               { name: "Node.Js", icon: assets.node },
-              { name: "Express.Js", icon: assets.express }
+              { name: "Express.Js", icon: assets.express },
+              { name: "Rest API", icon: assets.restapi  },
+              { name: "JWT", icon: assets.jwt },
+              { name: "Redis", icon: assets.redis }
             ]
           },
           {
             title: "Database",
             items: [
               { name: "MongoDB", icon: assets.mongo },
-              { name: "MySQL", icon: assets.mysql }
+              { name: "MySQL", icon: assets.mysql },
+              { name: "PostgreSQL", icon: assets.postgresql }
             ]
           },
           {
@@ -48,7 +51,9 @@ const Technology = () => {
             items: [
               { name: "Java", icon: assets.java },
               { name: "C++", icon: assets.cpp },
-              { name: "C", icon: assets.c }
+              { name: "C", icon: assets.c },
+              { name: "Javascript", icon: assets.js },
+              { name: "Typescript", icon: assets.typescript },
             ]
           },
           {
@@ -56,7 +61,11 @@ const Technology = () => {
             items: [
               { name: "Git", icon: assets.git },
               { name: "Github", icon: assets.github },
-              { name: "AWS (EC2, S3, IAM)", icon: assets.aws }
+              { name: "AWS (EC2, S3, IAM)", icon: assets.aws },
+              { name: "Docker", icon: assets.docker },
+              { name: "ChatGPT", icon: assets.chatgpt },
+              { name: "Postman", icon: assets.postman },
+              { name: "Vercel", icon: assets.vercel }
             ]
           }
         ].map((section, idx) => (

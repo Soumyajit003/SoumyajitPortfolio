@@ -31,6 +31,15 @@ import foodimg1 from './eatnowimg1.png'
 import foodimg2 from './eatnowimg2.png'
 import foodimg3 from './eatnowimg3.png'
 import foodimg4 from './eatnowimg4.png'
+import chatgpt from './chatgpt.png'
+import docker from './docker.png'
+import jwt from './jwt.png'
+import postman from './postman.png'
+import postgresql from './postgresql.png'
+import redis from './redis.png'
+import restapi from './restapi.png'
+import vercel from './vercel.png'
+import redux from './redux.png'
 
 
 export const assets = {
@@ -58,11 +67,15 @@ export const assets = {
     dummy,
     resume,
     todoimg1,
-    lurniximg1,
-    lurniximg2,
-    lurniximg3,
-    foodimg1,
-    foodimg2,
+    chatgpt,
+    docker,
+    jwt,
+    postman,
+    postgresql,
+    redis,
+    restapi,
+    vercel,
+    redux
 }
 
 

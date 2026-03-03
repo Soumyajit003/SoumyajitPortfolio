@@ -43,7 +43,7 @@ const Hero = () => {
               transition={{ type: "spring", stiffness: 100, damping: 20 }}
               whileHover={{ scale: 1.05, backgroundColor: "#fff" }}
               whileTap={{ scale: 0.95 }}
-              onClick={() => (location.href = (assets.resume))}
+              onClick={() => window.open(assets.resume, '_blank')}
               className='bg-yellow-400 px-4 py-2 text-zinc-800 border-none rounded-xl mt-6 md:mt-10  font-semibold outline-none cursor-pointer transition ease-out duration-200 '>
               Resume
             </motion.button>

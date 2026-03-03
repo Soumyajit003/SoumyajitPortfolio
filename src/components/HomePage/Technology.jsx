@@ -56,7 +56,7 @@ const Technology = () => {
             items: [
               { name: "Git", icon: assets.git },
               { name: "Github", icon: assets.github },
-              { name: "AWS", icon: assets.aws }
+              { name: "AWS (EC2, S3, IAM)", icon: assets.aws }
             ]
           }
         ].map((section, idx) => (

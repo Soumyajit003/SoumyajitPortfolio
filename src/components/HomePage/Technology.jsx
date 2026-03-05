@@ -65,7 +65,8 @@ const Technology = () => {
               { name: "Docker", icon: assets.docker },
               { name: "ChatGPT", icon: assets.chatgpt },
               { name: "Postman", icon: assets.postman },
-              { name: "Vercel", icon: assets.vercel }
+              { name: "Vercel", icon: assets.vercel },
+              { name: "Github copilot", icon: assets.githubcopilot}
             ]
           }
         ].map((section, idx) => (

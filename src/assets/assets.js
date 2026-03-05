@@ -40,6 +40,7 @@ import redis from './redis.png'
 import restapi from './restapi.png'
 import vercel from './vercel.png'
 import redux from './redux.png'
+import githubcopilot from './githubcopilot.png'
 
 
 export const assets = {
@@ -75,7 +76,8 @@ export const assets = {
     redis,
     restapi,
     vercel,
-    redux
+    redux,
+    githubcopilot
 }
 
 

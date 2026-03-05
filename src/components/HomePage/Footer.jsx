@@ -8,7 +8,7 @@ const Footer = () => {
       whileInView={{ opacity: 1 }}
       initial={{ opacity: 0}}
       transition={{ duration: 1 }}
-      className=' text-zinc-500 text-xs cursor-default'>Copyright © 2025 SoumyajitBera</motion.p>
+      className=' text-zinc-500 text-xs cursor-default'>Copyright © 2026 SoumyajitBera</motion.p>
     </div>
   )
 }

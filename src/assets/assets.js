@@ -41,6 +41,12 @@ import restapi from './restapi.png'
 import vercel from './vercel.png'
 import redux from './redux.png'
 import githubcopilot from './githubcopilot.png'
+import playtubeimg1 from './playtubeimg1.png'
+import playtubeimg2 from './playtubeimg2.png'
+import playtubeimg3 from './playtubeimg3.png'
+import playtubeimg4 from './playtubeimg4.png'
+import playtubeimg5 from './playtubeimg5.png'
+import playtubeimg6 from './playtubeimg6.png'
 
 
 export const assets = {
@@ -111,6 +117,21 @@ export const myProjects = [
         ],
         liveLink: "https://eatnow-orderfood.vercel.app",
         githubLink: "https://github.com/Soumyajit003/Eatnow-online-food-ordering.git"
+    },
+    {
+        name: "PlayTube - Video Streaming Platform",
+        technologyuse: ['React', 'Tailwind', 'Node.js', 'Express', 'MongoDB', 'JWT', 'Cloudinary'],
+        images: [playtubeimg1, playtubeimg2, playtubeimg3, playtubeimg4, playtubeimg5, playtubeimg6],
+        description: "A full-stack video streaming platform that allows users to upload videos, interact with content, and manage their own channels with a modern glassmorphism UI.",
+        features: [
+            "Secure JWT Authentication & User Channel Management",
+            "Video Upload, Streaming & Publish Toggle System",
+            "Like, Comment, Subscribe & Playlist Functionality",
+            "Personalized Dashboard with Channel Analytics",
+            "Scalable REST API with Clean Modular Backend Architecture"
+        ],
+        liveLink: "https://playtube-frontend.vercel.app/",
+        githubLink: "https://github.com/Soumyajit003/playtube.git"
     },
     {
         name: "Todo App",

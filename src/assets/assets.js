@@ -130,8 +130,8 @@ export const myProjects = [
             "Personalized Dashboard with Channel Analytics",
             "Scalable REST API with Clean Modular Backend Architecture"
         ],
-        liveLink: "https://playtube-frontend.vercel.app/",
-        githubLink: "https://github.com/Soumyajit003/playtube.git"
+        liveLink: "https://github.com/Soumyajit003/Playtube-online-video-streaming.git",
+        githubLink: "https://github.com/Soumyajit003/Playtube-online-video-streaming.git"
     },
     {
         name: "Todo App",

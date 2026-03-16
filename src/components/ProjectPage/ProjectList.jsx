@@ -35,16 +35,16 @@ const ImageSlider = ({ images, name }) => {
       {/* Navigation Controls */}
       {images.length > 1 && (
         <>
-          <div className="absolute inset-0 flex items-center justify-between p-4 opacity-0 group-hover/slider:opacity-100 transition-opacity duration-300">
+          <div className="absolute inset-0 flex items-center justify-between p-4 opacity-50 group-hover/slider:opacity-100 transition-opacity duration-300">
             <button
               onClick={prevImage}
-              className="p-2 rounded-full bg-black/60 text-white hover:bg-yellow-400 hover:text-zinc-900 transition-colors"
+              className="p-2 rounded-full bg-black/30 text-white hover:bg-yellow-400 hover:text-zinc-900 transition-colors"
             >
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="m15 18-6-6 6-6" /></svg>
             </button>
             <button
               onClick={nextImage}
-              className="p-2 rounded-full bg-black/60 text-white hover:bg-yellow-400 hover:text-zinc-900 transition-colors"
+              className="p-2 rounded-full bg-black/30 text-white hover:bg-yellow-400 hover:text-zinc-900 transition-colors"
             >
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="m9 18 6-6-6-6" /></svg>
             </button>

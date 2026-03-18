@@ -24,8 +24,7 @@ const Preloader = ({ onComplete, speed = "normal" }) => {
     return () => clearInterval(interval);
   }, [onComplete, speed]);
 
-  const firstName = "SOUMYA".split("");
-  const lastName = "JIT".split("");
+  const nameChars = "SOUMYAJIT".split("");
 
   return (
     <motion.div
@@ -78,9 +77,9 @@ const Preloader = ({ onComplete, speed = "normal" }) => {
 
         {/* Staggered Text Animation */}
         <div className="flex flex-col items-center mb-10 overflow-hidden">
-          <div className="flex gap-2 md:gap-4 overflow-hidden">
+          <div className="flex overflow-hidden">
              <div className="flex">
-               {firstName.map((letter, i) => (
+               {nameChars.map((letter, i) => (
                  <motion.span
                    key={i}
                    initial={{ y: '100%', opacity: 0 }}
@@ -90,24 +89,9 @@ const Preloader = ({ onComplete, speed = "normal" }) => {
                      delay: 0.1 + (i * 0.05),
                      ease: [0.33, 1, 0.68, 1]
                    }}
-                   className="font-bebas text-5xl md:text-8xl tracking-tight text-white mb-2"
-                 >
-                   {letter}
-                 </motion.span>
-               ))}
-             </div>
-             <div className="flex">
-               {lastName.map((letter, i) => (
-                 <motion.span
-                   key={i}
-                   initial={{ y: '100%', opacity: 0 }}
-                   animate={{ y: 0, opacity: 1 }}
-                   transition={{ 
-                     duration: 0.8, 
-                     delay: 0.5 + (i * 0.05),
-                     ease: [0.33, 1, 0.68, 1]
-                   }}
-                   className="font-bebas text-5xl md:text-8xl tracking-tight text-yellow-400 mb-2"
+                   className={`font-bebas text-5xl md:text-8xl mb-2 ${
+                     i >= 6 ? 'text-yellow-400' : 'text-white'
+                   }`}
                  >
                    {letter}
                  </motion.span>

@@ -3,29 +3,48 @@ import { myProjects } from '../../assets/assets';
 import { useState, useEffect } from 'react';
 import ImageLoader from '../Common/ImageLoader';
 
-const ImageSlider = ({ images, name }) => {
+const ImageSlider = ({ images = [], name }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  if (!images || images.length === 0) return null;
+  // Sync index if images list changes or becomes smaller
+  useEffect(() => {
+    if (images.length > 0 && currentIndex >= images.length) {
+      setCurrentIndex(0);
+    }
+  }, [images.length, currentIndex]);
+
+  if (!images || images.length === 0) {
+    return (
+      <div className="relative w-full aspect-video flex items-center justify-center bg-zinc-900 rounded-xl border border-zinc-800">
+        <span className="text-zinc-600 font-outfit text-sm">No images available</span>
+      </div>
+    );
+  }
 
   const nextImage = (e) => {
-    if (e) e.preventDefault();
-    setCurrentIndex((prev) => (prev + 1) % images.length);
+    if (e) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+    setCurrentIndex((prev) => (images.length > 0 ? (prev + 1) % images.length : 0));
   };
 
   const prevImage = (e) => {
-    if (e) e.preventDefault();
-    setCurrentIndex((prev) => (prev - 1 + images.length) % images.length);
+    if (e) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+    setCurrentIndex((prev) => (images.length > 0 ? (prev - 1 + images.length) % images.length : 0));
   };
 
   return (
     <div className="relative group/slider w-full overflow-hidden rounded-xl border border-zinc-700/50 bg-zinc-900 shadow-2xl">
       <AnimatePresence mode="wait">
         <ImageLoader
-          key={currentIndex}
+          key={`${name}-${currentIndex}`}
           src={images[currentIndex]}
           alt={`${name} screenshot ${currentIndex + 1}`}
-          className="w-full h-auto object-cover"
+          className="w-full h-full object-cover aspect-video"
         />
       </AnimatePresence>
 

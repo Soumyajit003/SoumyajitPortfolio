@@ -1,9 +1,9 @@
 import React from "react";
 import { assets, myProjects } from "../../assets/assets";
-import { motion } from "motion/react";
+import { motion } from "framer-motion";
 import { useNavigate } from 'react-router-dom';
 import { Element } from "react-scroll";
-
+import ImageLoader from "../Common/ImageLoader";
 
 const Projects = () => {
   const navigate = useNavigate();
@@ -43,7 +43,7 @@ const Projects = () => {
           >
             {/* Project Image Container */}
             <div className="relative h-48 overflow-hidden">
-              <img
+              <ImageLoader
                 src={project.images[0]}
                 alt={project.name}
                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
@@ -54,6 +54,7 @@ const Projects = () => {
                 </p>
               </div>
             </div>
+
 
             {/* Content */}
             <div className="p-6">

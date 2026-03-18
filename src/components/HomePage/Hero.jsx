@@ -1,7 +1,8 @@
 import React from 'react';
 import { assets } from '../../assets/assets';
-import { motion } from 'motion/react';
+import { motion } from 'framer-motion';
 import { Element } from "react-scroll";
+import ImageLoader from '../Common/ImageLoader';
 
 const Hero = () => {
 
@@ -61,21 +62,16 @@ const Hero = () => {
             delay: 0.4
           }}
           className='w-full md:w-lg flex justify-center mt-20 md:mt-0'>  {/*md:justify-end*/}
-          <motion.img
-            // animate={{
-            //   y: [0, -15, 0],
-            //   rotate: [0, 1, 0, -1, 0]
-            // }}
-            transition={{
-              duration: 5,
-              repeat: Infinity,
-              ease: "easeInOut"
-            }}
-            src={assets.my_photo_3} alt='' className='w-60 md:w-md rounded-lg' />
+          <ImageLoader
+            src={assets.my_photo_3}
+            alt="Soumyajit's Photo"
+            className="w-60 md:w-md rounded-lg"
+          />
         </motion.div>
       </Element>
     </>
   );
 };
+
 
 export default Hero;

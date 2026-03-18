@@ -1,6 +1,7 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { myProjects } from '../../assets/assets';
 import { useState, useEffect } from 'react';
+import ImageLoader from '../Common/ImageLoader';
 
 const ImageSlider = ({ images, name }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -20,14 +21,10 @@ const ImageSlider = ({ images, name }) => {
   return (
     <div className="relative group/slider w-full overflow-hidden rounded-xl border border-zinc-700/50 bg-zinc-900 shadow-2xl">
       <AnimatePresence mode="wait">
-        <motion.img
+        <ImageLoader
           key={currentIndex}
           src={images[currentIndex]}
           alt={`${name} screenshot ${currentIndex + 1}`}
-          initial={{ opacity: 0, x: 20 }}
-          animate={{ opacity: 1, x: 0 }}
-          exit={{ opacity: 0, x: -20 }}
-          transition={{ duration: 0.3, ease: "easeInOut" }}
           className="w-full h-auto object-cover"
         />
       </AnimatePresence>

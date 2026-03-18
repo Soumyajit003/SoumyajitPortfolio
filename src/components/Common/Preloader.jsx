@@ -2,23 +2,27 @@ import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { assets } from '../../assets/assets';
 
-const Preloader = ({ onComplete }) => {
+const Preloader = ({ onComplete, speed = "normal" }) => {
   const [percent, setPercent] = useState(0);
 
   useEffect(() => {
+    // Normal: 25ms * 100 = 2.5s
+    // Fast: 10ms * 100 = 1s
+    const intervalDuration = speed === "fast" ? 10 : 25;
+    
     const interval = setInterval(() => {
       setPercent((prev) => {
         if (prev >= 100) {
           clearInterval(interval);
-          setTimeout(onComplete, 800); 
+          setTimeout(onComplete, speed === "fast" ? 400 : 800); 
           return 100;
         }
-        return prev + 1; // Slower for more "appreciation" time
+        return prev + 1;
       });
-    }, 25);
+    }, intervalDuration);
 
     return () => clearInterval(interval);
-  }, [onComplete]);
+  }, [onComplete, speed]);
 
   const firstName = "SOUMYA".split("");
   const lastName = "JIT".split("");

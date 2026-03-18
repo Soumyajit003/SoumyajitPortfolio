@@ -12,12 +12,12 @@ import Floating from '../components/HomePage/Floating'
 import Social from '../components/HomePage/Social'
 
 
-const HomeMain = () => {
+const HomeMain = ({ isLoading }) => {
 
   return (
     <div>
       <Navbar />
-      <Hero />
+      <Hero isLoading={isLoading} />
       <Experience />
       <Technology />
       <Projects />

@@ -7,6 +7,7 @@ import { motion, AnimatePresence } from 'framer-motion';
  */
 const ImageLoader = ({ src, alt, className, ...props }) => {
   const [isLoaded, setIsLoaded] = useState(false);
+  const [hasError, setHasError] = useState(false);
 
   return (
     <div className={`relative overflow-hidden ${className}`}>
@@ -55,17 +56,44 @@ const ImageLoader = ({ src, alt, className, ...props }) => {
         )}
       </AnimatePresence>
 
+      {/* Fallback for Error or Missing Source */}
+      {(!src || hasError) && (
+        <div className="absolute inset-0 flex flex-col items-center justify-center bg-zinc-900 text-zinc-500 gap-2">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="40"
+            height="40"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <path d="M18 10h3l-4 4-4-4h3V4h2v6z" />
+            <path d="M21 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5v2H5v14h14v-5h2z" />
+          </svg>
+          <span className="text-xs font-outfit uppercase tracking-widest opacity-60">Image Unavailable</span>
+        </div>
+      )}
+
       {/* Actual Image */}
-      <motion.img
-        src={src}
-        alt={alt}
-        onLoad={() => setIsLoaded(true)}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: isLoaded ? 1 : 0 }}
-        transition={{ duration: 0.5, ease: "easeOut" }}
-        className={`${className} ${isLoaded ? 'block' : 'hidden'}`}
-        {...props}
-      />
+      {src && !hasError && (
+        <motion.img
+          src={src}
+          alt={alt}
+          onLoad={() => setIsLoaded(true)}
+          onError={() => {
+            setHasError(true);
+            setIsLoaded(true); // Stop shimmer if error
+          }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: isLoaded ? 1 : 0 }}
+          transition={{ duration: 0.5, ease: "easeOut" }}
+          className={`${className} ${isLoaded ? 'block' : 'hidden'}`}
+          {...props}
+        />
+      )}
     </div>
   );
 };

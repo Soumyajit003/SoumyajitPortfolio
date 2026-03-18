@@ -30,38 +30,38 @@ const Preloader = ({ onComplete }) => {
         y: '-100%',
         transition: { duration: 1, ease: [0.76, 0, 0.24, 1] }
       }}
-      className="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-zinc-950 text-white overflow-hidden"
+      className="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-zinc-900 text-white overflow-hidden"
     >
       {/* Premium Noise Overlay */}
       <div className="absolute inset-0 opacity-[0.03] pointer-events-none z-50 bg-[url('https://grainy-gradients.vercel.app/noise.svg')]" />
 
       <div className="relative flex flex-col items-center z-10">
         
-        {/* Sonar / Pulse Effect behind logo */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 pointer-events-none">
-           {[1, 2, 3].map((i) => (
-             <motion.div
-               key={i}
-               initial={{ scale: 0.5, opacity: 0 }}
-               animate={{ scale: 2, opacity: [0, 0.2, 0] }}
-               transition={{ 
-                 duration: 3, 
-                 repeat: Infinity, 
-                 delay: i * 0.8,
-                 ease: "easeOut"
-               }}
-               className="absolute inset-0 border border-yellow-400/30 rounded-full"
-             />
-           ))}
-        </div>
-
         {/* Logo Animation */}
         <motion.div
           initial={{ scale: 0.8, opacity: 0, filter: 'blur(10px)' }}
           animate={{ scale: 1, opacity: 1, filter: 'blur(0px)' }}
           transition={{ duration: 1.2, ease: "easeOut" }}
-          className="relative mb-12"
+          className="relative mb-12 flex items-center justify-center"
         >
+          {/* Sonar / Pulse Effect - Now nested for perfect centering */}
+          <div className="absolute inset-0 flex items-center justify-center pointer-events-none overflow-visible z-0">
+            {[1, 2, 3].map((i) => (
+              <motion.div
+                key={i}
+                initial={{ scale: 0.5, opacity: 0 }}
+                animate={{ scale: 2.5, opacity: [0, 0.2, 0] }}
+                transition={{ 
+                  duration: 3, 
+                  repeat: Infinity, 
+                  delay: i * 0.8,
+                  ease: "easeOut"
+                }}
+                className="absolute w-48 h-48 md:w-64 md:h-64 border border-yellow-400/30 rounded-full"
+              />
+            ))}
+          </div>
+
           <img 
             src={assets.soumyajit_logo_light} 
             alt="Logo" 
@@ -70,6 +70,7 @@ const Preloader = ({ onComplete }) => {
           {/* Subtle Glow behind logo */}
           <div className="absolute inset-0 bg-yellow-400/20 blur-3xl rounded-full scale-150" />
         </motion.div>
+
 
         {/* Staggered Text Animation */}
         <div className="flex flex-col items-center mb-10 overflow-hidden">
@@ -121,7 +122,7 @@ const Preloader = ({ onComplete }) => {
         {/* Improved Progress Section */}
         <div className="flex flex-col items-center w-72">
            <div className="flex items-center justify-between w-full mb-3 px-1">
-             <span className="font-outfit text-[10px] text-zinc-500 uppercase tracking-[0.3em]">System Initializing...</span>
+             <span className="font-outfit text-[10px] text-zinc-500 uppercase tracking-[0.3em]">Welcome to the portfolio...</span>
              <span className="font-josefin text-xs text-yellow-400 font-bold">{percent}%</span>
            </div>
            

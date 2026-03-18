@@ -34,7 +34,7 @@ const App = () => {
       <ScrollToTop />
       <Routes location={location} key={location.pathname}>
         <Route path="/" element={<HomeMain isLoading={isLoading} />} />
-        <Route path="/projects" element={<ProjectPage globalLoading={isLoading} />} />
+        <Route path="/projects" element={<ProjectPage />} />
       </Routes>
     </>
   );

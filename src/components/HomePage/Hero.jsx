@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import { Element } from "react-scroll";
 import ImageLoader from '../Common/ImageLoader';
 
-const Hero = () => {
+const Hero = ({ isLoading }) => {
 
   return (
     <>
@@ -16,7 +16,7 @@ const Hero = () => {
               visible: { transition: { staggerChildren: 0.2 } }
             }}
             initial="hidden"
-            whileInView="visible"
+            animate={!isLoading ? "visible" : "hidden"}
             viewport={{ once: false }}
           >
             <motion.p className='text-4xl md:text-5xl font-extrabold mb-6 md:mb-10 text-white'
@@ -52,8 +52,12 @@ const Hero = () => {
         </div>
         {/* Right div */}
         <motion.div
-          initial={{ x: 100, opacity: 0, scale: 0.8 }}
-          whileInView={{ x: 0, opacity: 1, scale: 1 }}
+          variants={{
+            hidden: { x: 100, opacity: 0, scale: 0.8 },
+            visible: { x: 0, opacity: 1, scale: 1 }
+          }}
+          initial="hidden"
+          animate={!isLoading ? "visible" : "hidden"}
           viewport={{ once: false }}
           transition={{
             type: "spring",
@@ -72,6 +76,7 @@ const Hero = () => {
     </>
   );
 };
+
 
 
 export default Hero;

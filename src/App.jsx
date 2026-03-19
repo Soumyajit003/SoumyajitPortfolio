@@ -5,6 +5,7 @@ import ProjectPage from "./Pages/ProjectPage";
 import ScrollToTop from "./components/ScrollToTop";
 import Preloader from "./components/Common/Preloader";
 import { AnimatePresence } from "framer-motion";
+import SmoothScroll from "./components/Common/SmoothScroll";
 
 const App = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -24,7 +25,7 @@ const App = () => {
   }, [isLoading]);
   
   return (
-    <>
+    <SmoothScroll>
       <AnimatePresence mode="wait">
         {isLoading && (
           <Preloader onComplete={() => setIsLoading(false)} />
@@ -36,7 +37,7 @@ const App = () => {
         <Route path="/" element={<HomeMain isLoading={isLoading} />} />
         <Route path="/projects" element={<ProjectPage />} />
       </Routes>
-    </>
+    </SmoothScroll>
   );
 };
 

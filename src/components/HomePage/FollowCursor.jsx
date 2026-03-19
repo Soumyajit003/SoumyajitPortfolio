@@ -1,123 +1,94 @@
-'use client';
-import { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+import { motion, useMotionValue, useSpring } from 'framer-motion';
 
-const FollowCursor = ({ color = '#c29b00ff' }) => {
+const FollowCursor = () => {
+  const [isHovered, setIsHovered] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
+  
+  const cursorX = useMotionValue(-100);
+  const cursorY = useMotionValue(-100);
+
+  const springConfig = { damping: 30, stiffness: 300 };
+  const cursorXSpring = useSpring(cursorX, springConfig);
+  const cursorYSpring = useSpring(cursorY, springConfig);
+
   useEffect(() => {
-    let canvas;
-    let context;
-    let animationFrame;
-    let width = window.innerWidth;
-    let height = window.innerHeight;
-    let cursor = { x: width / 2, y: height / 2 };
-    const prefersReducedMotion = window.matchMedia(
-      '(prefers-reduced-motion: reduce)'
-    );
-    class Dot {
-      position;
-      width;
-      lag;
-      constructor(x, y, width, lag) {
-        this.position = { x, y };
-        this.width = width;
-        this.lag = lag;
-      }
-      moveTowards(x, y, context) {
-        this.position.x += (x - this.position.x) / this.lag;
-        this.position.y += (y - this.position.y) / this.lag;
-        context.fillStyle = color;
-        context.beginPath();
-        context.arc(
-          this.position.x,
-          this.position.y,
-          this.width,
-          0,
-          2 * Math.PI
-        );
-        context.fill();
-        context.closePath();
-      }
-    }
-    const dot = new Dot(width / 2, height / 2, 4, 4);
-    const onMouseMove = (e) => {
-      cursor.x = e.clientX;
-      cursor.y = e.clientY;
+    const moveCursor = (e) => {
+      cursorX.set(e.clientX);
+      cursorY.set(e.clientY);
+      if (!isVisible) setIsVisible(true);
     };
-    const onWindowResize = () => {
-      const newWidth = window.innerWidth;
-      const newHeight = window.innerHeight;
 
-      // If resizing below laptop width, destroy the effect
-      if (newWidth < 1024 && canvas) {
-        destroy();
-        return;
-      }
-
-      // If resizing above laptop width and it's not already initialized, init it
-      if (newWidth >= 1024 && !canvas) {
-        init();
-        return;
-      }
-
-      width = newWidth;
-      height = newHeight;
-      if (canvas) {
-        canvas.width = width;
-        canvas.height = height;
-      }
-    };
-    const updateDot = () => {
-      if (context) {
-        context.clearRect(0, 0, width, height);
-        dot.moveTowards(cursor.x, cursor.y, context);
-      }
-    };
-    const loop = () => {
-      updateDot();
-      animationFrame = requestAnimationFrame(loop);
-    };
-    const init = () => {
-      // Laptop/Desktop check (usually >1024px)
-      if (window.innerWidth < 1024) {
-        console.log('Mobile/Tablet detected, cursor effect skipped.');
-        return;
-      }
-
-      if (prefersReducedMotion.matches) {
-        console.log('Reduced motion enabled, cursor effect skipped.');
-        return;
-      }
-      canvas = document.createElement('canvas');
-      context = canvas.getContext('2d');
-      canvas.style.position = 'fixed';
-      canvas.style.top = '0';
-      canvas.style.left = '0';
-      canvas.style.zIndex = '20'
-      canvas.style.pointerEvents = 'none';
-      canvas.width = width;
-      canvas.height = height;
-      document.body.appendChild(canvas);
-      window.addEventListener('mousemove', onMouseMove);
-      window.addEventListener('resize', onWindowResize);
-      loop();
-    };
-    const destroy = () => {
-      if (canvas) canvas.remove();
-      cancelAnimationFrame(animationFrame);
-      window.removeEventListener('mousemove', onMouseMove);
-      window.removeEventListener('resize', onWindowResize);
-    };
-    prefersReducedMotion.onchange = () => {
-      if (prefersReducedMotion.matches) {
-        destroy();
+    const handleHover = (e) => {
+      const target = e.target;
+      if (
+        target.closest('a') || 
+        target.closest('button') || 
+        target.closest('.cursor-pointer') ||
+        target.tagName === 'A' ||
+        target.tagName === 'BUTTON'
+      ) {
+        setIsHovered(true);
       } else {
-        init();
+        setIsHovered(false);
       }
     };
-    init();
+
+    window.addEventListener('mousemove', moveCursor);
+    window.addEventListener('mouseover', handleHover);
+    document.addEventListener('mouseleave', () => setIsVisible(false));
+    document.addEventListener('mouseenter', () => setIsVisible(true));
+
     return () => {
-      destroy();
+      window.removeEventListener('mousemove', moveCursor);
+      window.removeEventListener('mouseover', handleHover);
     };
-  }, [color]);
-  return null;
+  }, [cursorX, cursorY, isVisible]);
+
+  if (!isVisible) return null;
+
+  return (
+    <div className="fixed inset-0 pointer-events-none z-[9999] hidden lg:block">
+      {/* Outer Ring */}
+      <motion.div
+        className="absolute top-0 left-0 w-10 h-10 rounded-full border border-yellow-400/50"
+        style={{
+          x: cursorXSpring,
+          y: cursorYSpring,
+          translateX: '-50%',
+          translateY: '-50%',
+        }}
+        animate={{
+          scale: isHovered ? 1.5 : 1,
+          backgroundColor: isHovered ? "rgba(250, 204, 21, 0.1)" : "rgba(250, 204, 21, 0)",
+          borderWidth: isHovered ? "1px" : "1.5px",
+        }}
+        transition={{ type: "spring", stiffness: 200, damping: 20 }}
+      />
+      
+      {/* Inner Dot */}
+      <motion.div
+        className="absolute top-0 left-0 w-1.5 h-1.5 bg-yellow-400 rounded-full shadow-[0_0_10px_rgba(250,204,21,0.5)]"
+        style={{
+          x: cursorX,
+          y: cursorY,
+          translateX: '-50%',
+          translateY: '-50%',
+        }}
+      />
+
+      {/* Trailing Glow */}
+      <motion.div
+        className="absolute top-0 left-0 w-24 h-24 bg-yellow-400/5 blur-2xl rounded-full"
+        style={{
+          x: cursorXSpring,
+          y: cursorYSpring,
+          translateX: '-50%',
+          translateY: '-50%',
+        }}
+      />
+    </div>
+  );
 };
+
 export default FollowCursor;

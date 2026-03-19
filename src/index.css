@@ -26,3 +26,12 @@ html, body {
   width: 100vw;
   position: relative;
 }
+
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+.perspective-1000 {
+  perspective: 1000px;
+}

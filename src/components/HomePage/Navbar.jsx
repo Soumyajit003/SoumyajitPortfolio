@@ -4,6 +4,7 @@ import ScrollReading from "./ScrollReading";
 import { AnimatePresence, motion } from "motion/react";
 import { Menu, X } from "lucide-react";
 import { Link } from "react-scroll";
+import Magnetic from "../Common/Magnetic";
 
 const Navbar = () => {
   const calculatedHeight = ScrollReading();
@@ -43,38 +44,41 @@ const Navbar = () => {
             animate={{ opacity: 1, scale: 1 }}
             className="flex items-center"
           >
-            <img
-              src={assets.soumyajit_logo_light}
-              alt="Logo"
-              className="w-10 h-10 cursor-pointer hover:rotate-12 transition-transform duration-300"
-              onClick={() => {
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-                setIsMenuOpen(false);
-              }}
-            />
+            <Magnetic>
+              <img
+                src={assets.soumyajit_logo_light}
+                alt="Logo"
+                className="w-10 h-10 cursor-pointer hover:rotate-12 transition-transform duration-300"
+                onClick={() => {
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                  setIsMenuOpen(false);
+                }}
+              />
+            </Magnetic>
           </motion.div>
 
           {/* Desktop Links */}
           <ul className="hidden md:flex items-center gap-10">
             {navItems.map((item) => (
-              <motion.li
-                key={item.to}
-                whileHover={{ y: -2 }}
-                className="relative group flex flex-col items-center"
-              >
-                <Link
-                  to={item.to}
-                  smooth={true}
-                  duration={500}
-                  className="text-yellow-400 font-medium tracking-wide text-sm hover:text-white transition-colors cursor-pointer"
+              <Magnetic key={item.to}>
+                <motion.li
+                  whileHover={{ y: -2 }}
+                  className="relative group flex flex-col items-center"
                 >
-                  {item.label}
-                </Link>
-                {/* Active/Hover Indicator */}
-                <motion.div
-                  className="w-1 h-1 bg-yellow-400 rounded-full mt-1 scale-0 group-hover:scale-100 transition-transform duration-300"
-                />
-              </motion.li>
+                  <Link
+                    to={item.to}
+                    smooth={true}
+                    duration={500}
+                    className="text-yellow-400 font-medium tracking-wide text-sm hover:text-white transition-colors cursor-pointer px-2 py-1"
+                  >
+                    {item.label}
+                  </Link>
+                  {/* Active/Hover Indicator */}
+                  <motion.div
+                    className="w-1 h-1 bg-yellow-400 rounded-full mt-1 scale-0 group-hover:scale-100 transition-transform duration-300"
+                  />
+                </motion.li>
+              </Magnetic>
             ))}
           </ul>
 
@@ -97,15 +101,6 @@ const Navbar = () => {
           />
         </div>
 
-        {/* Floating Progress Bar (Global for transparent state) */}
-        {!scrolled && (
-          <motion.div
-            initial={{ scaleX: 0 }}
-            animate={{ scaleX: calculatedHeight / 100 }}
-            style={{ originX: 0 }}
-            className="absolute top-0 left-0 right-0 h-[3px] bg-yellow-400 z-[110]"
-          />
-        )}
       </nav>
 
       {/* Modern Mobile Drawer */}

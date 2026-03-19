@@ -107,11 +107,58 @@ const Hero = ({ isLoading }) => {
           </div>
           
           {/* Decorative Elements */}
-          <motion.div 
-            animate={{ rotate: 360 }}
-            transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-            className="absolute -z-10 w-full h-full border border-dashed border-yellow-400/20 rounded-full scale-100"
-          />
+          <div className="absolute -z-10 inset-0 flex items-center justify-center pointer-events-none scale-110 md:scale-125">
+            {/* Main Pulse Glow */}
+            <motion.div
+              animate={{
+                scale: [1, 1.1, 1],
+                opacity: [0.3, 0.5, 0.3],
+              }}
+              transition={{
+                duration: 4,
+                repeat: Infinity,
+                ease: "easeInOut"
+              }}
+              className="absolute w-full h-full bg-yellow-400/10 blur-[80px] rounded-full will-change-transform"
+              style={{ transform: "translateZ(0)" }}
+            />
+
+            {/* Rotating Outer Dashed Circle */}
+            <motion.div
+              animate={{ rotate: 360 }}
+              transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
+              className="absolute w-full h-full border border-dashed border-yellow-400/20 rounded-full will-change-transform"
+              style={{ transform: "translateZ(0)" }}
+            />
+
+            {/* Counter-Rotating Inner Dashed Circle */}
+            <motion.div
+              animate={{ rotate: -360 }}
+              transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
+              className="absolute w-[85%] h-[85%] border border-dashed border-yellow-400/10 rounded-full will-change-transform"
+              style={{ transform: "translateZ(0)" }}
+            />
+
+            {/* Orbiting Dot 1 */}
+            <motion.div
+              animate={{ rotate: 360 }}
+              transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
+              className="absolute w-full h-full will-change-transform"
+              style={{ transform: "translateZ(0)" }}
+            >
+              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-2 h-2 bg-yellow-400 rounded-full shadow-[0_0_10px_#facc15]" />
+            </motion.div>
+
+            {/* Orbiting Dot 2 */}
+            <motion.div
+              animate={{ rotate: -360 }}
+              transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
+              className="absolute w-full h-full will-change-transform"
+              style={{ transform: "translateZ(0)" }}
+            >
+              <div className="absolute bottom-10 right-1/2 translate-x-1/2 w-3 h-3 border border-yellow-400/50 rounded-full" />
+            </motion.div>
+          </div>
         </motion.div>
       </Element>
     </>

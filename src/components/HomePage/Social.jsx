@@ -1,6 +1,7 @@
 import React from "react";
 import { motion } from "motion/react";
 import { Element } from "react-scroll";
+import Magnetic from "../Common/Magnetic";
 
 
 const Social = () => {
@@ -41,29 +42,30 @@ const Social = () => {
               { href: "https://www.linkedin.com/in/berasoumyajit/", icon: "linkedin", path: "M100.3 448H7.4V148.9h92.9zM53.8 108.1C24.1 108.1 0 83.5 0 53.8a53.8 53.8 0 0 1 107.6 0c0 29.7-24.1 54.3-53.8 54.3zM447.9 448h-92.7V302.4c0-34.7-.7-79.2-48.3-79.2-48.3 0-55.7 37.7-55.7 76.7V448h-92.8V148.9h89.1v40.8h1.3c12.4-23.5 42.7-48.3 87.9-48.3 94 0 111.3 61.9 111.3 142.3V448z" },
               { href: "https://x.com/SoumyajitBera18", icon: "x", path: "M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z" }
             ].map((social) => (
-              <motion.a
-                key={social.icon}
-                variants={{
-                  hidden: { opacity: 0, scale: 0.5 },
-                  visible: { opacity: 1, scale: 1 }
-                }}
-                whileHover={{ scale: 1.2, color: "#fff" }}
-                whileTap={{ scale: 0.9 }}
-                transition={{ type: "spring", stiffness: 400, damping: 10 }}
-                href={social.href}
-                className=" hover:text-white transition duration-200 mx-2 cursor-pointer"
-                target="_blank"
-              >
-                <span className="[&>svg]:h-5 [&>svg]:w-4">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="currentColor"
-                    viewBox={social.icon === "linkedin" ? "0 0 448 512" : social.icon === "github" ? "0 0 496 512" : "0 0 512 512"}
-                  >
-                    <path d={social.path} />
-                  </svg>
-                </span>
-              </motion.a>
+              <Magnetic key={social.icon}>
+                <motion.a
+                  variants={{
+                    hidden: { opacity: 0, scale: 0.5 },
+                    visible: { opacity: 1, scale: 1 }
+                  }}
+                  whileHover={{ scale: 1.2, color: "#fff" }}
+                  whileTap={{ scale: 0.9 }}
+                  transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                  href={social.href}
+                  className=" hover:text-white transition duration-200 mx-2 cursor-pointer flex items-center justify-center w-10 h-10"
+                  target="_blank"
+                >
+                  <span className="[&>svg]:h-5 [&>svg]:w-4">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="currentColor"
+                      viewBox={social.icon === "linkedin" ? "0 0 448 512" : social.icon === "github" ? "0 0 496 512" : "0 0 512 512"}
+                    >
+                      <path d={social.path} />
+                    </svg>
+                  </span>
+                </motion.a>
+              </Magnetic>
             ))}
           </motion.div>
         </div>

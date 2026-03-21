@@ -60,7 +60,12 @@ const Preloader = ({ onComplete, speed = "normal" }) => {
       initial={{ opacity: 1 }}
       exit={{ 
         y: '-100%',
-        transition: { duration: 1, ease: [0.76, 0, 0.24, 1] }
+        opacity: 0,
+        transition: { 
+          duration: 1.2, 
+          ease: [0.76, 0, 0.24, 1],
+          opacity: { duration: 0.8 }
+        }
       }}
       className="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-zinc-900 text-white overflow-hidden perspective-1000"
     >
@@ -96,7 +101,7 @@ const Preloader = ({ onComplete, speed = "normal" }) => {
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1 }}
-          className="absolute -inset-16 pointer-events-none hidden md:block"
+          className="absolute -inset-16 pointer-events-none hidden md:block mb-10"
         >
            <div className="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-yellow-400/30" />
            <div className="absolute top-0 right-0 w-8 h-8 border-t-2 border-r-2 border-yellow-400/30" />
@@ -112,6 +117,48 @@ const Preloader = ({ onComplete, speed = "normal" }) => {
           transition={{ duration: 1.5, ease: [0.23, 1, 0.32, 1] }}
           className="relative mb-12 flex items-center justify-center group"
         >
+          {/* Progress Orbital Ring */}
+          <svg className="absolute w-[180px] h-[180px] md:w-[260px] md:h-[260px] -rotate-90 pointer-events-none">
+            {/* Background Ring */}
+            <circle
+              cx="50%"
+              cy="50%"
+              r="48%"
+              className="stroke-white/5 fill-none"
+              strokeWidth="2"
+            />
+            {/* Animated Progress Ring */}
+            <motion.circle
+              cx="50%"
+              cy="50%"
+              r="48%"
+              className="stroke-yellow-400 fill-none"
+              strokeWidth="3"
+              strokeDasharray="100 100"
+              initial={{ strokeDashoffset: 100 }}
+              animate={{ strokeDashoffset: 100 - percent }}
+              transition={{ duration: 0.5, ease: "easeOut" }}
+              strokeLinecap="round"
+              style={{
+                filter: 'drop-shadow(0 0 8px rgba(250, 204, 21, 0.6))',
+                pathLength: percent / 100
+              }}
+            />
+            
+            {/* Orbital Dot */}
+            <motion.circle
+              cx="50%"
+              cy="2%"
+              r="4"
+              className="fill-yellow-400"
+              style={{
+                transformOrigin: '50% 50%',
+                rotate: `${(percent / 100) * 360}deg`,
+                filter: 'drop-shadow(0 0 12px #facc15)'
+              }}
+            />
+          </svg>
+
           {/* Sonar / Pulse Effect */}
           <div className="absolute inset-0 flex items-center justify-center pointer-events-none overflow-visible z-0">
             {[1, 2, 3].map((i) => (
@@ -120,12 +167,12 @@ const Preloader = ({ onComplete, speed = "normal" }) => {
                 initial={{ scale: 0.8, opacity: 0 }}
                 animate={{ scale: 3, opacity: [0, 0.3, 0] }}
                 transition={{ 
-                  duration: 4, 
-                  repeat: Infinity, 
-                  delay: i * 1,
-                  ease: "easeOut"
+                   duration: 4, 
+                   repeat: Infinity, 
+                   delay: i * 1,
+                   ease: "easeOut"
                 }}
-                className="absolute w-48 h-48 md:w-64 md:h-64 border border-yellow-400/40 rounded-full"
+                className="absolute w-48 h-48 md:w-64 md:h-64 border border-yellow-400/20 rounded-full"
               />
             ))}
           </div>
@@ -140,9 +187,9 @@ const Preloader = ({ onComplete, speed = "normal" }) => {
           
           {/* Intense Glow behind logo */}
           <motion.div 
-            animate={{ scale: [1, 1.2, 1], opacity: [0.2, 0.4, 0.2] }}
+            animate={{ scale: [1, 1.2, 1], opacity: [0.15, 0.3, 0.15] }}
             transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute inset-0 bg-yellow-400/30 blur-[60px] rounded-full scale-150 z-0" 
+            className="absolute inset-0 bg-yellow-400/20 blur-[60px] rounded-full scale-150 z-0" 
           />
         </motion.div>
 
@@ -183,35 +230,28 @@ const Preloader = ({ onComplete, speed = "normal" }) => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.5 }}
-          className="flex flex-col items-center w-72 md:w-96"
+          className="flex flex-col items-center"
         >
-           <div className="flex items-center justify-between w-full mb-3 px-1">
+           <div className="flex items-center space-x-4">
              <motion.span 
                animate={{ opacity: [0.4, 1, 0.4] }}
                transition={{ duration: 2, repeat: Infinity }}
-               className="font-outfit text-[10px] text-zinc-400 uppercase tracking-[0.4em]"
+               className="font-outfit text-[10px] md:text-xs text-zinc-400 uppercase tracking-[0.6em] md:tracking-[0.8em]"
              >
                Loading Portfolio...
              </motion.span>
-             <span className="font-josefin text-sm text-yellow-400 font-bold tabular-nums">
-               {percent.toString().padStart(3, '0')}%
+             <span className="font-josefin text-xl md:text-2xl text-yellow-400 font-bold tabular-nums">
+               {percent}%
              </span>
            </div>
            
-           <div className="w-full h-[4px] bg-white/5 rounded-full relative overflow-hidden backdrop-blur-sm border border-white/5">
-             <motion.div
-               className="absolute left-0 top-0 h-full bg-gradient-to-r from-yellow-600 via-yellow-400 to-yellow-200"
-               style={{ width: `${percent}%` }}
-             >
-                <div className="absolute inset-0 bg-[linear-gradient(90deg,transparent,rgba(255,255,255,0.4),transparent)] animate-[shimmer_2s_infinite]" />
-             </motion.div>
-             
-             {/* Glowing head of progress bar */}
-             <motion.div
-               className="absolute top-1/2 -translate-y-1/2 w-4 h-4 bg-yellow-400 rounded-full blur-[6px] z-10"
-               style={{ left: `calc(${percent}% - 8px)` }}
-             />
-           </div>
+           {/* Subtle decorative line instead of bar */}
+           <motion.div 
+             initial={{ scaleX: 0 }}
+             animate={{ scaleX: 1 }}
+             style={{ scaleX: percent / 100 }}
+             className="h-[1px] w-24 md:w-32 mt-2 bg-yellow-400/50 origin-center"
+           />
         </motion.div>
       </div>
 

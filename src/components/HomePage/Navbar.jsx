@@ -166,7 +166,7 @@ const Navbar = () => {
               transition={{ delay: 1 }}
               className="mt-auto pt-10 border-t border-white/5"
             >
-              <p className="text-zinc-600 text-[10px] tracking-[0.2em] uppercase">© 2025 Soumyajit Bera</p>
+              <p className="text-zinc-600 text-[10px] tracking-[0.2em] uppercase">© 2026 Soumyajit Bera</p>
             </motion.div>
           </motion.div>
         )}

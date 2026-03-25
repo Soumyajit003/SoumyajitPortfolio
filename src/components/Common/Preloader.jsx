@@ -145,18 +145,7 @@ const Preloader = ({ onComplete, speed = "normal" }) => {
               }}
             />
             
-            {/* Orbital Dot */}
-            <motion.circle
-              cx="50%"
-              cy="2%"
-              r="4"
-              className="fill-yellow-400"
-              style={{
-                transformOrigin: '50% 50%',
-                rotate: `${(percent / 100) * 360}deg`,
-                filter: 'drop-shadow(0 0 12px #facc15)'
-              }}
-            />
+
           </svg>
 
           {/* Sonar / Pulse Effect */}

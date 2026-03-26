@@ -29,7 +29,7 @@ const NavProject = () => {
           onClick={() => navigate('/')}
         >
           <div className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center group-hover:bg-yellow-400 group-hover:border-yellow-400 transition-all duration-300">
-            <ArrowLeft size={20} className="group-hover:text-zinc-900 transition-colors group-hover:rotate-[-45deg] transition-transform duration-500" />
+            <ArrowLeft size={18} className="group-hover:text-zinc-900 transition-colors group-hover:scale-130 transition-transform duration-500" />
           </div>
           <p className="text-lg font-medium tracking-tight">Back</p>
         </motion.div>
@@ -49,8 +49,8 @@ const NavProject = () => {
                 onClick={() => navigate('/')}
                 className="bg-zinc-900/40 backdrop-blur-xl border border-white/10 text-white px-8 py-4 rounded-2xl font-bold shadow-[0_20px_40px_rgba(0,0,0,0.4)] cursor-pointer flex items-center gap-4 group hover:border-yellow-400/50 transition-colors"
               >
-                <div className="w-8 h-8 rounded-full bg-yellow-400 text-zinc-900 flex items-center justify-center group-hover:rotate-[-45deg] transition-transform duration-500">
-                  <ArrowLeft size={20} />
+                <div className="w-10 h-10 rounded-full bg-yellow-400 text-zinc-900 flex items-center justify-center transition-transform duration-500">
+                  <ArrowLeft size={18} className="group-hover:scale-130 transition-transform duration-500"/>
                 </div>
                 <span className="font-outfit uppercase tracking-widest text-xs">Back</span>
 

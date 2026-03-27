@@ -90,7 +90,7 @@ export const assets = {
 
 export const myProjects = [
     {   
-        name: "Lurinx - Learn online",
+        name: "Lurnix - AI Powered Learning Platform",
         technologyuse: ['React', 'Tailwind', 'Node', 'Mongo', 'Clerk', 'Gemini API'],
         images: [lurniximg1, lurniximg2, lurniximg4, lurniximg5,lurniximg3],
         description: "A full-stack, enterprise-grade Learning Management System built with secure authentication, role-based access control, community discussions, and AI integration to enhance the learning experience.",

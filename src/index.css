@@ -4,8 +4,8 @@
 @import "tailwindcss";
 
 
-@theme{
-  --font-bebas: Bebas Neue,"sans-serif";
+@theme {
+  --font-bebas: Bebas Neue, "sans-serif";
   --font-josefin: Josefin Sans, "sans-serif";
   --font-outfit: Outfit, "sans-serif";
 }
@@ -16,20 +16,26 @@
 }
 
 
-::-webkit-scrollbar{
+::-webkit-scrollbar {
   display: none;
 }
 
-html, body {
+html,
+body {
   scroll-behavior: smooth;
   overflow-x: hidden;
-  width: 100vw;
+  width: 100%;
   position: relative;
 }
 
 @keyframes shimmer {
-  0% { transform: translateX(-100%); }
-  100% { transform: translateX(100%); }
+  0% {
+    transform: translateX(-100%);
+  }
+
+  100% {
+    transform: translateX(100%);
+  }
 }
 
 .perspective-1000 {

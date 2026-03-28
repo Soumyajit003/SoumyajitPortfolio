@@ -20,7 +20,7 @@ const Education = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: false, amount: 0.2 }}
                 transition={{ type: "spring", stiffness: 100, damping: 20 }}
-                className="text-white text-3xl m-auto md:text-center mt-20 font-outfit"
+                className="text-white text-3xl m-auto md:text-center mt-10 font-outfit"
             >
                 Education
             </motion.p>

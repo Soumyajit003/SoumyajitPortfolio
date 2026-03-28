@@ -62,7 +62,7 @@ const Hero = ({ isLoading }) => {
               }}
               transition={{ duration: 0.8, delay: 1.2 }}
               className='text-sm md:text-lg px-4 md:px-0 text-zinc-400 max-w-xl leading-relaxed'>
-              I am a passionate <span className="text-white font-semibold">Full-Stack Web Developer</span>. I specialize in building modern, scalable, and user-friendly web applications using the latest technologies. From intuitive front-end designs to robust back-end architectures, I craft seamless digital experiences.
+              A results-driven <span className="text-white font-semibold">Full-Stack Developer</span> specializing in building scalable web applications and high-performance backend systems with modern technologies.
             </motion.p>
             
             <motion.div

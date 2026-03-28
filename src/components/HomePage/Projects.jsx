@@ -102,7 +102,7 @@ const Projects = () => {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: false, amount: 0.2 }}
         transition={{ type: "spring", stiffness: 100, damping: 20 }}
-        className="font-outfit text-3xl m-auto text-center mt-20 text-white"
+        className="font-outfit text-3xl m-auto text-center mt-10 text-white"
       >
         Featured Projects
       </motion.p>

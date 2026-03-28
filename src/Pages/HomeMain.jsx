@@ -1,15 +1,16 @@
 import React, { useEffect } from 'react'
-import Home from '../components/HomePage/Hero'
 import Navbar from '../components/HomePage/Navbar'
 import Hero from '../components/HomePage/Hero'
-import Experience from '../components/HomePage/Experience'
+import About from '../components/HomePage/About'
 import Technology from '../components/HomePage/Technology'
 import Projects from '../components/HomePage/Projects'
+import Experience from '../components/HomePage/Experience'
+import Education from '../components/HomePage/Education'
 import FollowCursor from '../components/HomePage/FollowCursor'
-import Footer from '../components/HomePage/Footer'
 import Contact from '../components/HomePage/Contact'
-import Floating from '../components/HomePage/Floating'
 import Social from '../components/HomePage/Social'
+import Footer from '../components/HomePage/Footer'
+import Floating from '../components/HomePage/Floating'
 
 
 const HomeMain = ({ isLoading }) => {
@@ -18,14 +19,16 @@ const HomeMain = ({ isLoading }) => {
     <div>
       <Navbar />
       <Hero isLoading={isLoading} />
-      <Experience />
+      <About />
       <Technology />
       <Projects />
-      <FollowCursor />
+      <Experience />
+      <Education />
       <Contact />
       <Social />
       <Footer />
       <Floating />
+      <FollowCursor />
     </div>
   )
 }

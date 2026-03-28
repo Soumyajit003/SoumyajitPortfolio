@@ -23,7 +23,7 @@ const App = () => {
       document.body.style.overflow = "auto";
     };
   }, [isLoading]);
-  
+
   return (
     <SmoothScroll>
       <AnimatePresence mode="wait">

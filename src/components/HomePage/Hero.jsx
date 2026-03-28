@@ -54,7 +54,7 @@ const Hero = ({ isLoading }) => {
                 ))}
               </span>
             </motion.h1>
-            
+
             <motion.p
               variants={{
                 hidden: { y: 20, opacity: 0 },
@@ -64,7 +64,7 @@ const Hero = ({ isLoading }) => {
               className='text-sm md:text-lg px-4 md:px-0 text-zinc-400 max-w-xl leading-relaxed'>
               A results-driven <span className="text-white font-semibold">Full-Stack Developer</span> specializing in building scalable web applications and high-performance backend systems with modern technologies.
             </motion.p>
-            
+
             <motion.div
               variants={{
                 hidden: { y: 20, opacity: 0 },
@@ -102,10 +102,10 @@ const Hero = ({ isLoading }) => {
             <ImageLoader
               src={assets.my_photo_3}
               alt="Soumyajit's Photo"
-              className="w-64 md:w-md rounded-lg relative hover:grayscale grayscale-0 transition-all duration-700"
+              className="w-64 md:w-[423px] rounded-lg relative hover:grayscale grayscale-0 transition-all duration-700"
             />
           </div>
-          
+
           {/* Decorative Elements */}
           <div className="absolute -z-10 inset-0 flex items-center justify-center pointer-events-none scale-110 md:scale-125">
             {/* Main Pulse Glow */}
@@ -115,7 +115,7 @@ const Hero = ({ isLoading }) => {
                 opacity: [0.3, 0.5, 0.3],
               }}
               transition={{
-                duration: 4,
+                duration: 5,
                 repeat: Infinity,
                 ease: "easeInOut"
               }}
@@ -123,41 +123,43 @@ const Hero = ({ isLoading }) => {
               style={{ transform: "translateZ(0)" }}
             />
 
-            {/* Rotating Outer Dashed Circle */}
-            <motion.div
-              animate={{ rotate: 360 }}
-              transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
-              className="absolute w-full h-full border border-dashed border-yellow-400/20 rounded-full will-change-transform"
-              style={{ transform: "translateZ(0)" }}
-            />
+            <div className="absolute w-[380px] h-[380px] md:w-[450px] md:h-[450px] flex items-center justify-center z-0">
 
-            {/* Counter-Rotating Inner Dashed Circle */}
-            <motion.div
-              animate={{ rotate: -360 }}
-              transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
-              className="absolute w-[85%] h-[85%] border border-dashed border-yellow-400/10 rounded-full will-change-transform"
-              style={{ transform: "translateZ(0)" }}
-            />
+              {/* <div className="absolute w-[420px] h-[320px] flex items-center justify-center">
 
-            {/* Orbiting Dot 1 */}
-            <motion.div
-              animate={{ rotate: 360 }}
-              transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
-              className="absolute w-full h-full will-change-transform"
-              style={{ transform: "translateZ(0)" }}
-            >
-              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-2 h-2 bg-yellow-400 rounded-full shadow-[0_0_10px_#facc15]" />
-            </motion.div>
+  <motion.div
+    animate={{ rotate: 360 }}
+    transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
+    className="absolute inset-0 border border-dashed border-yellow-400/20 rounded-full scale-x-120"
+  />
 
-            {/* Orbiting Dot 2 */}
-            <motion.div
-              animate={{ rotate: -360 }}
-              transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
-              className="absolute w-full h-full will-change-transform"
-              style={{ transform: "translateZ(0)" }}
-            >
-              <div className="absolute bottom-10 right-1/2 translate-x-1/2 w-3 h-3 border border-yellow-400/50 rounded-full" />
-            </motion.div>
+  <motion.div
+    animate={{ rotate: -360 }}
+    transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
+    className="absolute inset-[10%] border border-dashed border-yellow-400/10 rounded-full scale-x-120"
+  />
+
+</div> */}
+
+              {/* Orbit Dot 1 */}
+              {/* <motion.div
+    animate={{ rotate: 360 }}
+    transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
+    className="absolute inset-0"
+  >
+    <div className="absolute top-0 left-1/2 -translate-x-1/2 w-2 h-2 bg-yellow-400 rounded-full shadow-[0_0_10px_#facc15]" />
+  </motion.div> */}
+
+              {/* Orbit Dot 2 */}
+              {/* <motion.div
+    animate={{ rotate: -360 }}
+    transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
+    className="absolute inset-0"
+  >
+    <div className="absolute bottom-8 left-1/2 -translate-x-1/2 w-3 h-3 border border-yellow-400/50 rounded-full" />
+  </motion.div> */}
+
+            </div>
           </div>
         </motion.div>
       </Element>

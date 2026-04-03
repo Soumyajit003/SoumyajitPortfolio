@@ -141,7 +141,7 @@ const Navbar = () => {
               animate="show"
               className="flex flex-col gap-6"
             >
-              {[...navItems, { to: "connect", label: "Connect" }].map((item) => (
+              {[...navItems].map((item) => (
                 <motion.li
                   key={item.to}
                   variants={{

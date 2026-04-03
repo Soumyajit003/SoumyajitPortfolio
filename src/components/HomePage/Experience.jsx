@@ -7,7 +7,7 @@ const Experience = () => {
         {
             role: "Software Development Engineer Intern",
             company: "Innova Solutions",
-            duration: "May 2025 – Present", // User example or "1 Year"
+            duration: "May 2025 – March 2026", // User example or "1 Year"
             description:
                 "Worked as a Software Development Engineer Intern contributing to Salesforce-based enterprise solutions and frontend development. Implemented Salesforce Administration tasks including user management, roles, profiles, and security configurations. Developed Apex classes and triggers to automate business logic and enhance CRM functionality. Built and improved responsive frontend interfaces using React to enhance user experience.",
             tech: ["Salesforce Admin", "Salesforce Apex", "React", "JavaScript", "CRM"],

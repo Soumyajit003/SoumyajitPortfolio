@@ -27,7 +27,7 @@ const About = () => {
                 transition={{ type: "spring", stiffness: 100, damping: 20 }}
                 className="text-white text-3xl m-auto md:text-center mt-12 font-outfit"
             >
-                About Me
+                <span className="text-yellow-400 font-bold">A</span>bout Me
             </motion.p>
 
             <div className="mt-8">

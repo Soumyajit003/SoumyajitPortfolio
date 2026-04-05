@@ -13,7 +13,7 @@ const Technology = () => {
         transition={{ type: "spring", stiffness: 100, damping: 20 }}
         className=" text-white text-3xl m-auto md:text-center mt-10 font-outfit"
       >
-        Technologies
+        <span className="text-yellow-400 font-bold">T</span>echnologies
       </motion.p>
       <div className=" grid auto-cols-fr my-15">
         {[

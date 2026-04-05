@@ -23,7 +23,7 @@ const Experience = () => {
                 transition={{ type: "spring", stiffness: 100, damping: 20 }}
                 className="text-white text-3xl m-auto md:text-center mt-10 font-outfit"
             >
-                Experience
+                <span className="text-yellow-400 font-bold">E</span>xperience
             </motion.p>
 
             <div className="my-15">

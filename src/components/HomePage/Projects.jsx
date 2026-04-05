@@ -104,7 +104,7 @@ const Projects = () => {
         transition={{ type: "spring", stiffness: 100, damping: 20 }}
         className="font-outfit text-3xl m-auto text-center mt-10 text-white"
       >
-        Featured Projects
+        <span className="text-yellow-400 font-bold">F</span>eatured Projects
       </motion.p>
 
       <motion.div

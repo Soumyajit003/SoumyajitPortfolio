@@ -31,9 +31,9 @@ const Hero = ({ isLoading }) => {
 
   return (
     <>
-      <Element name='home' className='flex cursor-default flex-col md:flex-row justify-around text-white font-outfit mx-5 md:mx-25 border-b border-b-zinc-600 items-center md:mt-25 mt-40'>
+      <Element name='home' className='grid grid-cols-1 md:grid-cols-2 items-center gap-10 lg:gap-16 text-white font-outfit max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12 border-b border-b-zinc-600 md:mt-25 mt-40 overflow-x-hidden'>
         {/* Left div */}
-        <div className='w-full md:w-lg flex items-center text-center md:text-left'>
+        <div className='w-full flex items-center text-center md:text-left'>
           <motion.div
             variants={containerVariants}
             initial="hidden"
@@ -95,14 +95,14 @@ const Hero = ({ isLoading }) => {
             damping: 15,
             delay: 0.8
           }}
-          className='w-full md:w-lg flex justify-center mt-20 md:mt-0 relative'
+          className='w-full flex justify-center mt-20 md:mt-0 relative'
         >
           <div className="relative group">
             <div className="absolute -inset-1 rounded-lg blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200"></div>
             <ImageLoader
               src={assets.my_photo_3}
               alt="Soumyajit's Photo"
-              className="w-64 md:w-[423px] rounded-lg relative hover:grayscale grayscale-0 transition-all duration-700"
+              className="w-[260px] sm:w-[300px] md:w-[340px] lg:w-[380px] xl:w-[420px] rounded-lg relative hover:grayscale grayscale-0 transition-all duration-700 mx-auto"
             />
           </div>
 
@@ -123,7 +123,7 @@ const Hero = ({ isLoading }) => {
               style={{ transform: "translateZ(0)" }}
             />
 
-            <div className="absolute w-[380px] h-[380px] md:w-[450px] md:h-[450px] flex items-center justify-center z-0">
+            <div className="absolute w-[300px] sm:w-[350px] md:w-[400px] lg:w-[450px] h-[300px] sm:h-[350px] md:h-[400px] lg:h-[450px] flex items-center justify-center z-0">
 
               {/* <div className="absolute w-[420px] h-[320px] flex items-center justify-center">
 

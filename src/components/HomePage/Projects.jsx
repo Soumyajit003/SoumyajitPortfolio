@@ -96,7 +96,7 @@ const Projects = () => {
   const displayProjects = myProjects.slice(0, 3);
 
   return (
-    <Element name="projects" className="md:mx-25 mx-10 border-b border-b-zinc-600 pb-20 cursor-default perspective-1000">
+    <Element name="projects" className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12 border-b border-b-zinc-600 pb-20 cursor-default perspective-1000 overflow-x-hidden">
       <motion.p
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}

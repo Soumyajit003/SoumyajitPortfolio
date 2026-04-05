@@ -3,7 +3,7 @@ import { motion } from 'motion/react'
 
 const Footer = () => {
   return (
-    <div className=' md:mx-25 mx-10 px-5 py-5 text-center'>
+    <div className='max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12 py-5 text-center overflow-x-hidden'>
       <motion.p
       whileInView={{ opacity: 1 }}
       initial={{ opacity: 0}}

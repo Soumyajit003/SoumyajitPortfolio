@@ -5,7 +5,7 @@ import { Element } from "react-scroll";
 
 const Technology = () => {
   return (
-    <Element className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12 border-b border-b-zinc-600 cursor-default overflow-x-hidden" name="technologies">
+    <Element className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12 border-b border-b-zinc-600 cursor-default" name="technologies">
       <motion.p
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}

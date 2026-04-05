@@ -14,7 +14,7 @@ const Education = () => {
     ];
 
     return (
-        <Element className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12 border-b border-b-zinc-600 cursor-default pb-20 overflow-x-hidden" name="education">
+        <Element className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12 border-b border-b-zinc-600 cursor-default pb-20" name="education">
             <motion.p
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}

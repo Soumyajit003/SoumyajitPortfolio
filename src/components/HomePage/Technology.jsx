@@ -5,7 +5,7 @@ import { Element } from "react-scroll";
 
 const Technology = () => {
   return (
-    <Element className="md:mx-25 mx-10 border-b border-b-zinc-600 cursor-default" name="technologies">
+    <Element className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12 border-b border-b-zinc-600 cursor-default overflow-x-hidden" name="technologies">
       <motion.p
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -91,7 +91,7 @@ const Technology = () => {
               <p>{section.title}</p>
             </motion.div>
             <motion.div
-              className="md:w-lg md:grid md:grid-cols-3 gap-3 grid grid-cols-2"
+              className="md:flex-1 md:grid md:grid-cols-3 gap-3 grid grid-cols-2"
             >
               {section.items.map((item) => (
                 <motion.div
@@ -102,7 +102,7 @@ const Technology = () => {
                   }}
                   whileHover={{ scale: 1.1, y: -5 }}
                   transition={{ type: "spring", stiffness: 300, damping: 15 }}
-                  className="flex items-center gap-3 md:w-10 w-7"
+                  className="flex items-center gap-3 md:w-10 w-7 mb-4"
                 >
                   <img src={item.icon} alt="" className="" />
                   <p className=" text-white font-josefin md:text-xl whitespace-nowrap">{item.name}</p>

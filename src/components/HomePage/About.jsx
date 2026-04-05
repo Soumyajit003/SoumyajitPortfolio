@@ -19,7 +19,7 @@ const About = () => {
     ];
 
     return (
-        <Element className="md:mx-25 mx-5 border-b border-b-zinc-600 cursor-default pb-20" name="about">
+        <Element className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12 border-b border-b-zinc-600 cursor-default pb-20 overflow-x-hidden" name="about">
             <motion.p
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -63,7 +63,7 @@ const About = () => {
                                 visible: { opacity: 1, x: 0 }
                             }}
                             transition={{ type: "spring", stiffness: 100, damping: 20 }}
-                            className="md:w-lg relative"
+                            className="md:flex-1 relative"
                         >
                             <div className="absolute -left-4 top-0 bottom-0 w-[1px] bg-gradient-to-b from-yellow-400/50 to-transparent hidden md:block" />
                             <p className="text-zinc-400 font-outfit text-lg leading-relaxed">

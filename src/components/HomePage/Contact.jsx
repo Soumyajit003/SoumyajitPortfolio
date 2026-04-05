@@ -38,7 +38,7 @@ const Contact = () => {
   };
 
   return (
-    <Element name="contact" className="md:mx-25 mx-10 mt-20 border-b border-b-zinc-600 pb-20">
+    <Element name="contact" className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12 mt-20 border-b border-b-zinc-600 pb-20 overflow-x-hidden">
       <div className="grid md:grid-cols-2 gap-16 items-start mt-10">
 
         {/* Left Side: Contact Info */}

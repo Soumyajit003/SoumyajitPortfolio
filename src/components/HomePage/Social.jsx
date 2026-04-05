@@ -7,7 +7,7 @@ import Magnetic from "../Common/Magnetic";
 const Social = () => {
   return (
     <>
-      <Element name="connect" className=" font-outfit md:mx-25  md:hidden block mx-10 mt-10 pb-5 border-b border-b-zinc-600">
+      <Element name="connect" className="font-outfit max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12 md:hidden block mt-10 pb-5 border-b border-b-zinc-600 overflow-x-hidden">
         <motion.p
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}

@@ -15,7 +15,7 @@ const Experience = () => {
     ];
 
     return (
-        <Element className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12 border-b border-b-zinc-600 cursor-default pb-10 overflow-x-hidden" name="experience">
+        <Element className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12 border-b border-b-zinc-600 cursor-default pb-10" name="experience">
             <motion.p
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}

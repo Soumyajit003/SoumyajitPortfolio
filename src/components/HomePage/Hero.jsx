@@ -31,7 +31,7 @@ const Hero = ({ isLoading }) => {
 
   return (
     <>
-      <Element name='home' className='grid grid-cols-1 md:grid-cols-2 items-center gap-10 lg:gap-16 text-white font-outfit max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12 border-b border-b-zinc-600 md:mt-25 mt-40 overflow-x-hidden'>
+      <Element name='home' className='grid grid-cols-1 md:grid-cols-2 items-center gap-10 lg:gap-16 text-white font-outfit max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12 border-b border-b-zinc-600 md:mt-25 mt-40'>
         {/* Left div */}
         <div className='w-full flex items-center text-center md:text-left'>
           <motion.div

@@ -22,7 +22,7 @@ const Education = () => {
                 transition={{ type: "spring", stiffness: 100, damping: 20 }}
                 className="text-white text-3xl m-auto md:text-center mt-10 font-outfit"
             >
-                Education
+                <span className="text-yellow-400 font-bold">E</span>ducation
             </motion.p>
 
             <div className="my-15">

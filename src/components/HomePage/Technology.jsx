@@ -33,7 +33,7 @@ const Technology = () => {
             items: [
               { name: "Node.Js", icon: assets.node },
               { name: "Express.Js", icon: assets.express },
-              { name: "Rest API", icon: assets.restapi  },
+              { name: "Rest API", icon: assets.restapi },
               { name: "JWT", icon: assets.jwt },
               { name: "Redis", icon: assets.redis }
             ]
@@ -66,7 +66,7 @@ const Technology = () => {
               { name: "ChatGPT", icon: assets.chatgpt },
               { name: "Postman", icon: assets.postman },
               { name: "Vercel", icon: assets.vercel },
-              { name: "Github copilot", icon: assets.githubcopilot}
+              { name: "Github copilot", icon: assets.githubcopilot }
             ]
           }
         ].map((section, idx) => (

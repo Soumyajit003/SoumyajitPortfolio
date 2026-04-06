@@ -6,7 +6,7 @@ import ImageLoader from '../Common/ImageLoader';
 import Magnetic from '../Common/Magnetic';
 
 const Hero = ({ isLoading }) => {
-  const greeting = "Hello I am ".split("");
+  const greeting = "Hello, I am ".split("");
   const name = "Soumyajit".split("");
 
   const containerVariants = {

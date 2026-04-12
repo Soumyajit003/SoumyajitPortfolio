@@ -3,6 +3,7 @@ import { motion } from 'motion/react'
 
 const Footer = () => {
   return (
+           {/* footer */}
     <div className='max-w-7xl mx-auto px-6 sm:px-8 md:px-10 lg:px-12 py-5 text-center'>
       <motion.p
         whileInView={{ opacity: 1 }}

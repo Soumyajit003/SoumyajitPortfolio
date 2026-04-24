@@ -72,11 +72,20 @@ const Hero = ({ isLoading }) => {
               }}
               transition={{ duration: 0.8, delay: 1.4 }}
             >
-              <button
+              {/* <button
                 onClick={() => window.open('/SoumyajitResume.pdf', '_blank')}
                 className='bg-yellow-400 px-7 py-3 md:px-10 md:py-4 text-zinc-900 border-none rounded-2xl mt-8 md:mt-12 font-bold text-base md:text-lg outline-none cursor-pointer transition-all duration-300 hover:bg-white hover:scale-105 active:scale-95 shadow-[0_0_20px_rgba(250,204,21,0.2)]'>
                 View CV
-              </button>
+              </button> */}
+              <a
+                href="/SoumyajitResume.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <button className="bg-yellow-400 px-7 py-3 md:px-10 md:py-4 text-zinc-900 border-none rounded-2xl mt-8 md:mt-12 font-bold text-base md:text-lg outline-none cursor-pointer transition-all duration-300 hover:bg-white hover:scale-105 active:scale-95 shadow-[0_0_20px_rgba(250,204,21,0.2)]">
+                  View CV
+                </button>
+              </a>
 
             </motion.div>
           </motion.div>

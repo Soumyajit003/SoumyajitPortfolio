@@ -2,6 +2,33 @@ import React from "react";
 import { motion } from "motion/react";
 import { Element } from "react-scroll";
 
+const CertificateLink = ({ href }) => {
+    if (!href) return null;
+    return (
+        <a
+            href={href}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="View completion certificate"
+            className="inline-flex items-center gap-1.5 mt-3 text-zinc-500 hover:text-yellow-400 text-[13px] font-outfit transition-all duration-300 group"
+        >
+            <span className="group-hover:underline decoration-yellow-400/30 underline-offset-4">View Certificate</span>
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+                className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+            >
+                <path
+                    fillRule="evenodd"
+                    d="M5.22 14.78a.75.75 0 001.06 0l7.22-7.22v5.69a.75.75 0 001.5 0v-7.5a.75.75 0 00-.75-.75h-7.5a.75.75 0 000 1.5h5.69l-7.22 7.22a.75.75 0 000 1.06z"
+                    clipRule="evenodd"
+                />
+            </svg>
+        </a>
+    );
+};
+
 const Experience = () => {
     const experiences = [
         {
@@ -11,6 +38,7 @@ const Experience = () => {
             description:
                 "Worked as a Software Development Engineer Intern contributing to Salesforce-based enterprise solutions and frontend development. Implemented Salesforce Administration tasks including user management, roles, profiles, and security configurations. Developed Apex classes and triggers to automate business logic and enhance CRM functionality. Built and improved responsive frontend interfaces using React to enhance user experience.",
             tech: ["Salesforce Admin", "Salesforce Apex", "React", "JavaScript", "CRM"],
+            certificate: "#", // Add your certificate link here
         },
     ];
 
@@ -65,6 +93,8 @@ const Experience = () => {
                             <p className="text-zinc-400 mt-4 leading-relaxed font-outfit">
                                 {exp.description}
                             </p>
+
+                            <CertificateLink href={exp.certificate} />
 
                             {/* Tech Stack Tags as Pills */}
                             <div className="flex flex-wrap gap-3 mt-6">

@@ -1,6 +1,7 @@
 import React from "react";
 import { motion } from "motion/react";
 import { Element } from "react-scroll";
+import InnovaCertificate from "../../assets/Innova Solution Completion (Verified).png";
 
 const CertificateLink = ({ href }) => {
     if (!href) return null;
@@ -10,9 +11,9 @@ const CertificateLink = ({ href }) => {
             target="_blank"
             rel="noopener noreferrer"
             aria-label="View completion certificate"
-            className="inline-flex items-center gap-1.5 mt-3 text-zinc-500 hover:text-yellow-400 text-[13px] font-outfit transition-all duration-300 group"
+            className="inline-flex items-center gap-1.5 mt-4 text-zinc-300 hover:text-yellow-400 text-sm font-outfit transition-all duration-300 group py-1 overflow-visible hover:drop-shadow-[0_0_8px_rgba(250,204,21,0.4)]"
         >
-            <span className="group-hover:underline decoration-yellow-400/30 underline-offset-4">View Certificate</span>
+            <span className="group-hover:underline decoration-yellow-400/40 underline-offset-4">View Certificate</span>
             <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 20 20"
@@ -38,7 +39,7 @@ const Experience = () => {
             description:
                 "Worked as a Software Development Engineer Intern contributing to Salesforce-based enterprise solutions and frontend development. Implemented Salesforce Administration tasks including user management, roles, profiles, and security configurations. Developed Apex classes and triggers to automate business logic and enhance CRM functionality. Built and improved responsive frontend interfaces using React to enhance user experience.",
             tech: ["Salesforce Admin", "Salesforce Apex", "React", "JavaScript", "CRM"],
-            certificate: "#", // Add your certificate link here
+            certificate: InnovaCertificate,
         },
     ];
 

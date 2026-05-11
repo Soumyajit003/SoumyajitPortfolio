@@ -47,6 +47,12 @@ import playtubeimg3 from './playtubeimg3.png'
 import playtubeimg4 from './playtubeimg4.png'
 import playtubeimg5 from './playtubeimg5.png'
 import playtubeimg6 from './playtubeimg6.png'
+import flowdeskimg1 from './flowdeskimg1.png'
+import flowdeskimg2 from './flowdeskimg2.png'
+import flowdeskimg3 from './flowdeskimg3.png'
+import flowdeskimg4 from './flowdeskimg4.png'
+import flowdeskimg5 from './flowdeskimg5.png'
+import flowdeskimg6 from './flowdeskimg6.png'
 
 
 export const assets = {
@@ -132,6 +138,21 @@ export const myProjects = [
         ],
         liveLink: "https://github.com/Soumyajit003/Playtube-online-video-streaming.git",
         githubLink: "https://github.com/Soumyajit003/Playtube-online-video-streaming.git"
+    },
+    {
+        name: "FlowDesk - Team Task Manager",
+        technologyuse: ['React', 'Tailwind', 'Node', 'Express', 'MongoDB', 'JWT', 'Railway'],
+        images: [flowdeskimg1, flowdeskimg2, flowdeskimg3, flowdeskimg4, flowdeskimg5],
+        description: "A full-stack team collaboration and task management platform built with role-based access control, project tracking, task assignment, and real-time workflow management for teams and organizations.",
+        features: [
+            "JWT Authentication & Role-Based Access Control",
+            "Project Creation & Team Management System",
+            "Task Assignment, Status Tracking & Priority Management",
+            "Dashboard Analytics with Overdue Task Monitoring",
+            "Scalable REST API Architecture with MongoDB Integration"
+        ],
+        liveLink: "https://flowdesk-stayconnected.vercel.app/",
+        githubLink: "https://github.com/Soumyajit003/FlowDesk.git"
     },
     {
         name: "Todo App",

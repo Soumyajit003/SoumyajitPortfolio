@@ -54,6 +54,7 @@ const Technology = () => {
               { name: "C", icon: assets.c },
               { name: "Javascript", icon: assets.js },
               { name: "Typescript", icon: assets.typescript },
+              { name: "Python", icon: assets.python },
             ]
           },
           {

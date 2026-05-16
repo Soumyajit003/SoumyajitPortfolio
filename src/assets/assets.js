@@ -4,6 +4,7 @@ import my_photo_2 from './my_photo2.png'
 import my_photo_3 from './my_photo3.png'
 import java from './java.png'
 import cpp from './cpp.png'
+import python from './python.png'
 import c from './c.png'
 import css from './css.png'
 import html from './html.png'
@@ -63,6 +64,7 @@ export const assets = {
     java,
     cpp,
     css,
+    python,
     html,
     js,
     mongo,

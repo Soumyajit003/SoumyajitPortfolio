@@ -4,7 +4,7 @@ import { motion, useMotionValue, useSpring } from 'framer-motion';
 const FollowCursor = () => {
   const [isHovered, setIsHovered] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
-  
+
   const cursorX = useMotionValue(-100);
   const cursorY = useMotionValue(-100);
 
@@ -22,8 +22,8 @@ const FollowCursor = () => {
     const handleHover = (e) => {
       const target = e.target;
       if (
-        target.closest('a') || 
-        target.closest('button') || 
+        target.closest('a') ||
+        target.closest('button') ||
         target.closest('.cursor-pointer') ||
         target.tagName === 'A' ||
         target.tagName === 'BUTTON'
@@ -65,7 +65,7 @@ const FollowCursor = () => {
         }}
         transition={{ type: "spring", stiffness: 200, damping: 20 }}
       />
-      
+
       {/* Inner Dot */}
       <motion.div
         className="absolute top-0 left-0 w-1.5 h-1.5 bg-yellow-400 rounded-full shadow-[0_0_10px_rgba(250,204,21,0.5)]"

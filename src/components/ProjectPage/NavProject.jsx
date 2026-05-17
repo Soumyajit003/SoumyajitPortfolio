@@ -50,7 +50,7 @@ const NavProject = () => {
                 className="bg-zinc-900/40 backdrop-blur-xl border border-white/10 text-white px-5 py-3 rounded-2xl font-bold shadow-[0_20px_40px_rgba(0,0,0,0.4)] cursor-pointer flex items-center gap-4 group hover:border-yellow-400/50 transition-colors"
               >
                 <div className="w-10 h-10 rounded-full bg-yellow-400 text-zinc-900 flex items-center justify-center transition-transform duration-500">
-                  <ArrowLeft size={18} className="group-hover:scale-130 transition-transform duration-500"/>
+                  <ArrowLeft size={18} className="group-hover:scale-130 transition-transform duration-500" />
                 </div>
                 <span className="font-outfit tracking-widest text-s">Back</span>
 

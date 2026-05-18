@@ -54,33 +54,6 @@ const ProjectCard = ({ project, navigate }) => {
       <div style={{ transform: "translateZ(50px)", transformStyle: "preserve-3d" }} className="w-full h-full">
         {/* Project Image Container */}
         <div className="relative h-44 overflow-hidden">
-          {/* Circular Action Links in top-right corner */}
-          <div 
-            className="absolute top-3.5 right-3.5 flex gap-2 z-30"
-            onClick={(e) => e.stopPropagation()}
-            onMouseDown={(e) => e.stopPropagation()}
-            onPointerDown={(e) => e.stopPropagation()}
-          >
-            <a
-              href={project.liveLink}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-8 h-8 rounded-full flex items-center justify-center bg-zinc-950/80 backdrop-blur-md border border-zinc-800 text-zinc-300 hover:text-yellow-400 hover:border-yellow-400/50 hover:bg-zinc-900 hover:shadow-[0_0_15px_rgba(250,204,21,0.25)] transition-all duration-300 group/btn"
-              title="Live Demo"
-            >
-              <ExternalLink size={14} className="group-hover/btn:scale-110 transition-transform duration-300" />
-            </a>
-            <a
-              href={project.githubLink}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-8 h-8 rounded-full flex items-center justify-center bg-zinc-950/80 backdrop-blur-md border border-zinc-800 text-zinc-300 hover:text-yellow-400 hover:border-yellow-400/50 hover:bg-zinc-900 hover:shadow-[0_0_15px_rgba(250,204,21,0.25)] transition-all duration-300 group/btn"
-              title="GitHub Repository"
-            >
-              <Github size={14} className="group-hover/btn:scale-110 transition-transform duration-300" />
-            </a>
-          </div>
-
           <ImageLoader
             src={project.images[0]}
             alt={project.name}
@@ -96,24 +69,54 @@ const ProjectCard = ({ project, navigate }) => {
         </div>
 
         {/* Content */}
-        <div className="p-5" style={{ transform: "translateZ(30px)" }}>
+        <div className="p-5 flex flex-col justify-between h-[130px]" style={{ transform: "translateZ(30px)" }}>
           <h3 className="font-outfit text-[19px] font-bold text-white group-hover:text-yellow-400 transition-colors duration-300 tracking-tight leading-snug">
             {project.name}
           </h3>
 
-          {/* Tech Tags */}
-          <div className="flex flex-wrap gap-1.5 mt-3">
-            {project.technologyuse.slice(0, 3).map((tech) => (
-              <span
-                key={tech}
-                className="px-2.5 py-0.5 bg-zinc-900/50 border border-zinc-800/40 text-zinc-400 rounded-full text-[9px] font-medium font-outfit uppercase tracking-wider group-hover:border-yellow-400/10 group-hover:text-yellow-400/70 transition-all duration-300"
+          {/* Bottom Row containing Tech Tags (left) and Yellow Action Icons (right) */}
+          <div className="flex items-center justify-between gap-4 mt-3">
+            {/* Tech Tags */}
+            <div className="flex flex-wrap gap-1.5 flex-1">
+              {project.technologyuse.slice(0, 3).map((tech) => (
+                <span
+                  key={tech}
+                  className="px-2.5 py-0.5 bg-zinc-900/50 border border-zinc-800/40 text-zinc-400 rounded-full text-[9px] font-medium font-outfit uppercase tracking-wider group-hover:border-yellow-400/10 group-hover:text-yellow-400/70 transition-all duration-300"
+                >
+                  {tech}
+                </span>
+              ))}
+              {project.technologyuse.length > 3 && (
+                <span className="text-zinc-500 text-[9px] font-outfit self-center ml-1 whitespace-nowrap">+{project.technologyuse.length - 3} more</span>
+              )}
+            </div>
+
+            {/* Action Icons - Bottom Right Corner in Yellow color */}
+            <div 
+              className="flex gap-2.5 z-30 shrink-0"
+              onClick={(e) => e.stopPropagation()}
+              onMouseDown={(e) => e.stopPropagation()}
+              onPointerDown={(e) => e.stopPropagation()}
+            >
+              <a
+                href={project.liveLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-8 h-8 rounded-full flex items-center justify-center bg-zinc-950/80 border border-yellow-400/30 text-yellow-400 hover:text-zinc-950 hover:bg-yellow-400 shadow-[0_0_10px_rgba(250,204,21,0.1)] hover:shadow-[0_0_15px_rgba(250,204,21,0.3)] transition-all duration-300 group/btn"
+                title="Live Demo"
               >
-                {tech}
-              </span>
-            ))}
-            {project.technologyuse.length > 3 && (
-              <span className="text-zinc-500 text-[9px] font-outfit self-center ml-1">+{project.technologyuse.length - 3} more</span>
-            )}
+                <ExternalLink size={14} className="group-hover/btn:scale-110 transition-transform duration-300" />
+              </a>
+              <a
+                href={project.githubLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-8 h-8 rounded-full flex items-center justify-center bg-zinc-950/80 border border-yellow-400/30 text-yellow-400 hover:text-zinc-950 hover:bg-yellow-400 shadow-[0_0_10px_rgba(250,204,21,0.1)] hover:shadow-[0_0_15px_rgba(250,204,21,0.3)] transition-all duration-300 group/btn"
+                title="GitHub Repository"
+              >
+                <Github size={14} className="group-hover/btn:scale-110 transition-transform duration-300" />
+              </a>
+            </div>
           </div>
         </div>
 

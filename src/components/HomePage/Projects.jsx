@@ -4,6 +4,7 @@ import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { useNavigate } from 'react-router-dom';
 import { Element } from "react-scroll";
 import ImageLoader from "../Common/ImageLoader";
+import { ExternalLink, Github } from "lucide-react";
 
 const ProjectCard = ({ project, navigate }) => {
   const x = useMotionValue(0);
@@ -36,50 +37,82 @@ const ProjectCard = ({ project, navigate }) => {
     <motion.div
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
+      onClick={() => navigate('/projects')}
       style={{
         rotateX,
         rotateY,
         transformStyle: "preserve-3d",
       }}
+      whileHover={{ y: -8, scale: 1.01 }}
+      transition={{ type: "spring", stiffness: 300, damping: 22 }}
       variants={{
         hidden: { opacity: 0, y: 30 },
         visible: { opacity: 1, y: 0 }
       }}
-      className="relative group w-full md:w-[350px] bg-zinc-900/50 border border-zinc-800 rounded-2xl overflow-hidden transition-colors duration-300 hover:border-yellow-400/30 cursor-pointer"
+      className="relative group w-full md:w-[340px] bg-zinc-950/40 backdrop-blur-md border border-zinc-800/80 rounded-2xl overflow-hidden shadow-xl transition-all duration-300 hover:border-yellow-400/40 hover:shadow-[0_20px_40px_rgba(0,0,0,0.6)] cursor-pointer"
     >
       <div style={{ transform: "translateZ(50px)", transformStyle: "preserve-3d" }} className="w-full h-full">
         {/* Project Image Container */}
-        <div className="relative h-48 overflow-hidden pointer-events-none">
+        <div className="relative h-44 overflow-hidden">
+          {/* Circular Action Links in top-right corner */}
+          <div 
+            className="absolute top-3.5 right-3.5 flex gap-2 z-30"
+            onClick={(e) => e.stopPropagation()}
+            onMouseDown={(e) => e.stopPropagation()}
+            onPointerDown={(e) => e.stopPropagation()}
+          >
+            <a
+              href={project.liveLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-8 h-8 rounded-full flex items-center justify-center bg-zinc-950/80 backdrop-blur-md border border-zinc-800 text-zinc-300 hover:text-yellow-400 hover:border-yellow-400/50 hover:bg-zinc-900 hover:shadow-[0_0_15px_rgba(250,204,21,0.25)] transition-all duration-300 group/btn"
+              title="Live Demo"
+            >
+              <ExternalLink size={14} className="group-hover/btn:scale-110 transition-transform duration-300" />
+            </a>
+            <a
+              href={project.githubLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-8 h-8 rounded-full flex items-center justify-center bg-zinc-950/80 backdrop-blur-md border border-zinc-800 text-zinc-300 hover:text-yellow-400 hover:border-yellow-400/50 hover:bg-zinc-900 hover:shadow-[0_0_15px_rgba(250,204,21,0.25)] transition-all duration-300 group/btn"
+              title="GitHub Repository"
+            >
+              <Github size={14} className="group-hover/btn:scale-110 transition-transform duration-300" />
+            </a>
+          </div>
+
           <ImageLoader
             src={project.images[0]}
             alt={project.name}
-            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-103"
+            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-zinc-950/90 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
-            <p className="text-white text-xs font-outfit line-clamp-3 leading-relaxed">
+
+          {/* Premium dark blurred overlay for description */}
+          <div className="absolute inset-0 bg-zinc-950/85 backdrop-blur-md opacity-0 group-hover:opacity-100 transition-all duration-500 flex items-center justify-center p-5 z-20">
+            <p className="text-zinc-300 text-[11px] font-outfit leading-relaxed font-normal text-center">
               {project.description}
             </p>
           </div>
         </div>
 
         {/* Content */}
-        <div className="p-6" style={{ transform: "translateZ(30px)" }}>
-          <h3 className="font-bebas text-4xl text-white group-hover:text-yellow-400 transition-colors tracking-tight">
+        <div className="p-5" style={{ transform: "translateZ(30px)" }}>
+          <h3 className="font-outfit text-[19px] font-bold text-white group-hover:text-yellow-400 transition-colors duration-300 tracking-tight leading-snug">
             {project.name}
           </h3>
 
           {/* Tech Tags */}
-          <div className="flex flex-wrap gap-2 mt-4">
+          <div className="flex flex-wrap gap-1.5 mt-3">
             {project.technologyuse.slice(0, 3).map((tech) => (
               <span
                 key={tech}
-                className="px-2.5 py-1 bg-white/5 border border-zinc-800 text-zinc-400 rounded-full text-[10px] font-medium group-hover:border-yellow-400/20 group-hover:text-yellow-400/80 transition-colors"
+                className="px-2.5 py-0.5 bg-zinc-900/50 border border-zinc-800/40 text-zinc-400 rounded-full text-[9px] font-medium font-outfit uppercase tracking-wider group-hover:border-yellow-400/10 group-hover:text-yellow-400/70 transition-all duration-300"
               >
                 {tech}
               </span>
             ))}
             {project.technologyuse.length > 3 && (
-              <span className="text-zinc-600 text-[10px] self-center">+{project.technologyuse.length - 3} more</span>
+              <span className="text-zinc-500 text-[9px] font-outfit self-center ml-1">+{project.technologyuse.length - 3} more</span>
             )}
           </div>
         </div>

@@ -102,7 +102,7 @@ export const myProjects = [
     {   
         name: "Lurnix - AI Powered Learning Platform",
         technologyuse: ['React', 'Tailwind', 'Node', 'Mongo', 'Clerk', 'Gemini API'],
-        images: [lurniximg1, lurniximg2, lurniximg4, lurniximg6, lurniximg7, lurniximg5, lurniximg3],
+        images: [lurniximg1, lurniximg2, lurniximg4, lurniximg7, lurniximg6, lurniximg5, lurniximg3],
         description: "A full-stack, enterprise-grade Learning Management System built with secure authentication, role-based access control, community discussions, and AI integration to enhance the learning experience.",
         features: [
             "Secure OAuth Authentication & Role-Based Access Control",

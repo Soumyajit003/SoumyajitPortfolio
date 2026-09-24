@@ -78,7 +78,7 @@ const Hero = ({ isLoading }) => {
                 View CV
               </button> */}
               <a
-                href="/SoumyajitResume.pdf"
+                href="/SoumyajitResume_SoftwareEngineer_.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
               >

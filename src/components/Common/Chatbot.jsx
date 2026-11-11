@@ -1,6 +1,8 @@
 import { getSessionId } from "../../utils/session";
 import { sendChatMessageStream } from "../../services/chatApi";
 import { useState, useRef, useEffect } from "react";
+import { assets } from "../../assets/assets";
+import { img } from "motion/react-client";
 
 function Chatbot() {
   const [sessionId] = useState(() => getSessionId());
@@ -137,21 +139,22 @@ function Chatbot() {
           ref={dialogRef}
           role="dialog"
           aria-label="Chat with Jix, Soumyajit's AI assistant"
-          className="flex h-[31rem] max-h-[calc(100vh-7rem)] w-[calc(100vw-2.5rem)] max-w-[27rem] flex-col overflow-hidden rounded-2xl border border-white/10 bg-[#222326] text-white shadow-[0_20px_60px_rgba(0,0,0,0.55)] motion-safe:animate-[chatIn_0.2s_ease-out]"
+          className="flex h-[31rem] max-h-[calc(100vh-7rem)] w-[calc(100vw-2.5rem)] max-w-[27rem] flex-col overflow-hidden rounded-2xl border border-white/10 bg-[#222326]/60 backdrop-blur-2xl text-white shadow-[0_20px_60px_rgba(0,0,0,0.55)] motion-safe:animate-[chatIn_0.2s_ease-out]"
         >
           {/* Header */}
-          <div className="flex items-center gap-3 border-b border-white/10 bg-[#1b1c1e] px-4 py-3">
+          <div className="flex items-center gap-3 border-b border-white/10 bg-[#1b1c1e]/60 px-4 py-3">
             <div className="relative flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-yellow-400 text-[#222326]">
-              <SparkIcon className="h-5 w-5" />
+              {/* <SparkIcon className="h-5 w-5" /> */}
+              <img src={assets.jix} alt="" />
               <span className="absolute -bottom-0.5 -right-0.5 h-3 w-3 rounded-full border-2 border-[#1b1c1e] bg-green-400" />
             </div>
 
             <div className="min-w-0 flex-1">
               <h2 className="text-base font-bold leading-tight">
-                Jix <span className="text-[#FFC700]">AI</span>
+                Jix <span className="text-yellow-400">AI</span>
               </h2>
               <p className="truncate text-xs text-gray-400">
-                Ask about projects, skills and experience
+                Ask about education, skills, projects and experience
               </p>
             </div>
 
@@ -224,7 +227,7 @@ function Chatbot() {
           {/* Input */}
           <form
             onSubmit={handleSendMessage}
-            className="flex items-center gap-2 border-t border-white/10 bg-[#1b1c1e] p-3"
+            className="flex items-center gap-2 border-t border-white/10 bg-[#1b1c1e]/60 p-3"
           >
             <input
               type="text"
@@ -253,12 +256,13 @@ function Chatbot() {
         onClick={() => setIsOpen((open) => !open)}
         aria-label={isOpen ? "Close AI chat" : "Open AI chat"}
         aria-expanded={isOpen}
-        className="group flex items-center gap-2 rounded-full bg-yellow-400 px-5 py-3.5 font-bold text-[#222326] shadow-[0_0px_20px_rgba(255,199,0,0.35)] transition hover:scale-105 hover:bg-[#ffd633] focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#222326]"
+        className="group flex items-center gap-2 rounded-full bg-yellow-400 px-5 py-3.5 font-bold text-[#222326] shadow-[0_0px_20px_rgba(255,199,0,0.35)] transition hover:scale-105 hover:bg-white focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#222326]"
       >
         {isOpen ? (
           <CloseIcon className="h-5 w-5" />
         ) : (
           <SparkIcon className="h-5 w-5" />
+          // <img src={assets.jix} alt="" className="w-10"/>
         )}
         <span className="text-sm">{isOpen ? "Close" : "Ask AI"}</span>
       </button>

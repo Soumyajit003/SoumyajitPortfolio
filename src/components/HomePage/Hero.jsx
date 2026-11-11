@@ -42,11 +42,11 @@ const Hero = ({ isLoading }) => {
           >
             <motion.h1 className='text-4xl md:text-6xl font-extrabold mb-6 md:mb-10 text-white flex flex-wrap justify-center md:justify-start'>
               {greeting.map((char, index) => (
-                <motion.span key={index} variants={letterVariants} className="inline-block whitespace-pre">
+                <motion.span key={index} variants={letterVariants} className="inline-block whitespace-pre text-5xl">
                   {char}
                 </motion.span>
               ))}
-              <span className='text-yellow-400'>
+              <span className='text-yellow-400 text-7xl'>
                 {name.map((char, index) => (
                   <motion.span key={index} variants={letterVariants} className="inline-block whitespace-pre">
                     {char}

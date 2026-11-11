@@ -85,3 +85,58 @@ def chat(request: ChatRequest):
             status_code=500,
             detail="Something went wrong while generating the response."
         )
+
+# /chat/stream endpoint for streamming
+@app.post("/chat/stream")
+def chat_stream(request: ChatRequest):
+    try:
+        session_id=request.session_id
+        user_message=request.message.strip()
+
+        if not session_id or not user_message:
+            raise HTTPException(
+                status_code=400,
+                detail="Session ID and message are required."
+            )
+
+        # create conversation if it doesn't exist
+        if not conversation_manager.get_history(session_id):
+            conversation_manager.create_conversation(session_id, system_prompt)
+
+        # add user message
+        conversation_manager.add_conversation(session_id, "user", user_message)
+
+        # retrieve conversation history
+        messages=conversation_manager.get_history(session_id)
+
+        def stream_response():
+            full_response=""
+            try:
+                # Generate and send chunks
+                for chunk in generate_response_stream(messages):
+                    full_response+=chunk
+                    yield f"data: {json.dumps({'content': chunk})}\n\n"
+
+                # Save complete assistant response
+                conversation_manager.add_conversation(session_id, "assistant", full_response)
+                yield "data: [DONE]\n\n"
+            except Exception as error:
+                print(f"Streaming endpoint error: {error}")
+
+                yield f"data: {json.dumps({'error': 'Unable to generate response.'})}\n\n"
+
+        return StreamingResponse(
+            stream_response(),
+            media_type="text/event-stream",
+            headers={
+                "Cache-Control": "no-cache",
+                "X-Accel-Buffering": "no"
+            }
+        )
+    except Exception as error:
+            print(f"Chat endpoint error: {error}")
+            raise HTTPException(
+                status_code=500,
+                detail="Something went wrong while generating the response."
+            )
+        

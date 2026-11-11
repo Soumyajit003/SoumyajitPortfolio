@@ -1,10 +1,10 @@
 import { getSessionId } from "../../utils/session";
-import { sendChatMessage } from "../../services/chatApi";
+import { sendChatMessageStream } from "../../services/chatApi";
 import { useState, useRef, useEffect } from "react";
 
 function Chatbot() {
   const [sessionId] = useState(() => getSessionId());
-
+  
   const [messages, setMessages] = useState([
     {
       role: "assistant",
@@ -15,6 +15,7 @@ function Chatbot() {
 
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
+  const [hasReceivedChunk, setHasReceivedChunk] = useState(false);
 
   // UI-only state: floating widget open/closed
   const [isOpen, setIsOpen] = useState(false);
@@ -61,6 +62,7 @@ function Chatbot() {
     return () => dialog.removeEventListener("wheel", handleWheel);
   }, [isOpen]);
 
+
   async function handleSendMessage(e) {
     e.preventDefault();
 
@@ -68,32 +70,62 @@ function Chatbot() {
 
     if (!userMessage || loading) return;
 
-    // Display the user's message immediately
-    setMessages((prev) => [...prev, { role: "user", content: userMessage }]);
+    // Add user message and an empty assistant message
+    setMessages((prev) => [
+      ...prev,
+      { role: "user", content: userMessage },
+      { role: "assistant", content: "" },
+    ]);
 
     setInput("");
     setLoading(true);
+    setHasReceivedChunk(false);
 
     try {
-      const data = await sendChatMessage(sessionId, userMessage);
+      await sendChatMessageStream(
+        sessionId,
+        userMessage,
+        (chunk) => {
+          // First chunk received
+          setHasReceivedChunk(true);
 
-      // Display the AI response
-      setMessages((prev) => [
-        ...prev,
-        { role: "assistant", content: data.reply },
-      ]);
+          // Append each chunk to the existing assistant message
+          setMessages((prev) => {
+            const updatedMessages = [...prev];
+            const lastIndex = updatedMessages.length - 1;
+
+            updatedMessages[lastIndex] = {
+              ...updatedMessages[lastIndex],
+              content: updatedMessages[lastIndex].content + chunk,
+            };
+
+            return updatedMessages;
+          });
+        }
+      );
+
     } catch (error) {
-      console.error("Chatbot error:", error);
+      console.error("Chatbot streaming error:", error);
 
-      setMessages((prev) => [
-        ...prev,
-        {
-          role: "assistant",
-          content: "Sorry, something went wrong. Please try again.",
-        },
-      ]);
+      setMessages((prev) => {
+        const updatedMessages = [...prev];
+        const lastIndex = updatedMessages.length - 1;
+
+        const existingContent = updatedMessages[lastIndex].content;
+
+        updatedMessages[lastIndex] = {
+          ...updatedMessages[lastIndex],
+          content: existingContent
+            ? existingContent + "\n\nSorry, the response was interrupted."
+            : "Sorry, something went wrong. Please try again.",
+        };
+
+        return updatedMessages;
+      });
+
     } finally {
       setLoading(false);
+      setHasReceivedChunk(false);
     }
   }
 
@@ -139,37 +171,52 @@ function Chatbot() {
             data-lenis-prevent
             className="flex-1 space-y-4 overflow-y-auto overscroll-contain px-4 py-4 [scrollbar-color:#3a3b3f_transparent] [scrollbar-width:thin]"
           >
-            {messages.map((message, index) => (
-              <div
-                key={index}
-                className={`flex ${
-                  message.role === "user" ? "justify-end" : "justify-start"
-                }`}
-              >
+            {messages.map((message, index) => {
+              const isLast = index === messages.length - 1;
+
+              // The empty assistant placeholder doubles as the typing indicator
+              const isWaiting =
+                isLast &&
+                message.role === "assistant" &&
+                !message.content &&
+                loading &&
+                !hasReceivedChunk;
+
+              // Never render an empty assistant bubble
+              if (message.role === "assistant" && !message.content && !isWaiting) {
+                return null;
+              }
+
+              return (
                 <div
-                  className={`max-w-[88%] whitespace-pre-wrap break-words px-4 py-2.5 text-sm leading-relaxed ${
-                    message.role === "user"
-                      ? "rounded-2xl rounded-br-sm bg-yellow-400 font-medium text-[#222326]"
-                      : "rounded-2xl rounded-bl-sm border border-white/10 bg-[#2d2e32] text-gray-100"
+                  key={index}
+                  className={`flex ${
+                    message.role === "user" ? "justify-end" : "justify-start"
                   }`}
                 >
-                  {message.content}
+                  <div
+                    className={`max-w-[88%] whitespace-pre-wrap break-words px-4 py-2.5 text-sm leading-relaxed ${
+                      message.role === "user"
+                        ? "rounded-2xl rounded-br-sm bg-yellow-400 font-medium text-[#222326]"
+                        : "rounded-2xl rounded-bl-sm border border-white/10 bg-[#2d2e32] text-gray-100"
+                    }`}
+                  >
+                    {isWaiting ? (
+                      <div
+                        className="flex h-5 items-center gap-1.5"
+                        aria-label="Jix is typing"
+                      >
+                        <span className="h-2 w-2 rounded-full bg-yellow-400 motion-safe:animate-bounce [animation-delay:-0.3s]" />
+                        <span className="h-2 w-2 rounded-full bg-yellow-400 motion-safe:animate-bounce [animation-delay:-0.15s]" />
+                        <span className="h-2 w-2 rounded-full bg-yellow-400 motion-safe:animate-bounce" />
+                      </div>
+                    ) : (
+                      message.content
+                    )}
+                  </div>
                 </div>
-              </div>
-            ))}
-
-            {loading && (
-              <div className="flex justify-start">
-                <div
-                  className="flex items-center gap-1.5 rounded-2xl rounded-bl-sm border border-white/10 bg-[#2d2e32] px-4 py-3"
-                  aria-label="Jix is typing"
-                >
-                  <span className="h-2 w-2 rounded-full bg-yellow-400 motion-safe:animate-bounce [animation-delay:-0.3s]" />
-                  <span className="h-2 w-2 rounded-full bg-yellow-400 motion-safe:animate-bounce [animation-delay:-0.15s]" />
-                  <span className="h-2 w-2 rounded-full bg-yellow-400 motion-safe:animate-bounce" />
-                </div>
-              </div>
-            )}
+              );
+            })}
 
             <div ref={messagesEndRef} />
           </div>

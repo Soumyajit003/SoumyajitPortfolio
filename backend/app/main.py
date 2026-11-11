@@ -1,11 +1,13 @@
+import json
+from fastapi.responses import StreamingResponse
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 
+from app.chatbot import generate_response, generate_response_stream
 from app.knowledge_loader import load_knowledge_base
 from app.prompt_builder import build_system_prompt
 from app.conversation import ConversationManager
-from app.chatbot import generate_response
 
 
 
@@ -43,7 +45,7 @@ class ChatRequest(BaseModel):
 def home():
     return { "message": "Portfolio Chatbot API is running!" }
 
-# char endpoint
+# chat endpoint
 @app.post("/chat")
 def chat(request: ChatRequest):
     try:

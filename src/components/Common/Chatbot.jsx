@@ -253,7 +253,7 @@ function Chatbot() {
         onClick={() => setIsOpen((open) => !open)}
         aria-label={isOpen ? "Close AI chat" : "Open AI chat"}
         aria-expanded={isOpen}
-        className="group flex items-center gap-2 rounded-full bg-yellow-400 px-5 py-3.5 font-bold text-[#222326] shadow-[0_8px_30px_rgba(255,199,0,0.35)] transition hover:scale-105 hover:bg-[#ffd633] focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#222326]"
+        className="group flex items-center gap-2 rounded-full bg-yellow-400 px-5 py-3.5 font-bold text-[#222326] shadow-[0_0px_20px_rgba(255,199,0,0.35)] transition hover:scale-105 hover:bg-[#ffd633] focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#222326]"
       >
         {isOpen ? (
           <CloseIcon className="h-5 w-5" />

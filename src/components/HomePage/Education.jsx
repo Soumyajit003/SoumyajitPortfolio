@@ -8,7 +8,7 @@ const Education = () => {
             degree: "Bachelor of Engineering in Computer Science (BE CSE)",
             college: "Chitkara University",
             duration: "2022 – 2026",
-            cgpa: "9.43",
+            cgpa: "9.49",
             description: "Developing a strong foundation in computer science and engineering principles, focusing on software development and data structures."
         },
     ];

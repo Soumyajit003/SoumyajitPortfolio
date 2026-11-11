@@ -38,12 +38,12 @@ const NavProject = () => {
       {/* Floating Back Button - Desktop Only */}
       <AnimatePresence>
         {scrolled && (
-          <div className="fixed bottom-12 right-12 z-[1001] hidden md:block">
+          <div className="fixed top-12 right-12 z-[1001] hidden md:block">
             <Magnetic>
               <motion.div
-                initial={{ scale: 0, opacity: 0, y: 50 }}
+                initial={{ scale: 0, opacity: 0, y: -50 }}
                 animate={{ scale: 1, opacity: 1, y: 0 }}
-                exit={{ scale: 0, opacity: 0, y: 50 }}
+                exit={{ scale: 0, opacity: 0, y: -50 }}
                 whileHover={{ scale: 1.05, y: -5 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={() => navigate('/')}

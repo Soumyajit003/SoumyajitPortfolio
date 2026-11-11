@@ -6,6 +6,7 @@ import ScrollToTop from "./components/ScrollToTop";
 import Preloader from "./components/Common/Preloader";
 import { AnimatePresence } from "framer-motion";
 import SmoothScroll from "./components/Common/SmoothScroll";
+import Chatbot from "./components/Common/Chatbot";
 
 const App = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -37,6 +38,8 @@ const App = () => {
         <Route path="/" element={<HomeMain isLoading={isLoading} />} />
         <Route path="/projects" element={<ProjectPage />} />
       </Routes>
+
+      <Chatbot />
     </SmoothScroll>
   );
 };

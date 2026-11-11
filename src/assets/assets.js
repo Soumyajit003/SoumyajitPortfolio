@@ -56,6 +56,7 @@ import flowdeskimg3 from './flowdeskimg3.png'
 import flowdeskimg4 from './flowdeskimg4.png'
 import flowdeskimg5 from './flowdeskimg5.png'
 import flowdeskimg6 from './flowdeskimg6.png'
+import jix from './jix_av.png'
 
 
 export const assets = {
@@ -93,7 +94,8 @@ export const assets = {
     restapi,
     vercel,
     redux,
-    githubcopilot
+    githubcopilot,
+    jix
 }
 
 

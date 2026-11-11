@@ -1,0 +1,43 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Node / React
+node_modules/
+dist/
+dist-ssr/
+*.local
+
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Python virtual environments
+backend/.venv/
+backend/venv/
+
+# Environment variables
+.env
+.env.*
+!.env.example
+
+# Editor directories
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Other IDE files
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?

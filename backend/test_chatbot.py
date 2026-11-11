@@ -12,7 +12,7 @@ messages=[
     },
     {
         "role": "user",
-        "content": "tell me about soumyajit's one of the major project which does not have any ai feature."
+        "content": "does he has any type of experiences?"
     }
 ]
 

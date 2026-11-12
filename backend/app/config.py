@@ -12,10 +12,7 @@ load_dotenv(ENV_PATH)
 # Application configuration
 GROQ_API_KEY = os.getenv("GROQ_API_KEY")
 
-MODEL_NAME = os.getenv(
-    "MODEL_NAME",
-    "openai/gpt-oss-120b"
-)
+MODEL_NAME = os.getenv("MODEL_NAME")
 
 def validate_config():
     if not GROQ_API_KEY:

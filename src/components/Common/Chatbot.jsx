@@ -292,7 +292,7 @@ function Chatbot() {
           <SparkIcon className="h-5 w-5" />
           // <img src={assets.jix} alt="" className="w-10"/>
         )}
-        <span className="text-sm">{isOpen ? "Close" : "Ask AI"}</span>
+        <span className="text-sm">{isOpen ? "Close" : "Ask Jix"}</span>
       </button>
 
       {/* Keyframes for the open and close animations (scoped to this component) */}

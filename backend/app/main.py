@@ -39,6 +39,12 @@ class ChatRequest(BaseModel):
     session_id: str
     message: str
 
+@app.get("/health")
+def health_check():
+    return {
+        "status": "ok",
+        "message": "Backend is ready"
+    }
 
 # home endpoint
 @app.get("/")

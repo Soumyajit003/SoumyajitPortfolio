@@ -18,6 +18,7 @@ function Chatbot() {
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
   const [hasReceivedChunk, setHasReceivedChunk] = useState(false);
+  const [connectionStatus, setConnectionStatus] = useState("");
 
   // UI-only state: floating widget open/closed
   const [isOpen, setIsOpen] = useState(false);
@@ -82,16 +83,15 @@ function Chatbot() {
     setInput("");
     setLoading(true);
     setHasReceivedChunk(false);
+    setConnectionStatus("connecting");
 
     try {
       await sendChatMessageStream(
         sessionId,
         userMessage,
         (chunk) => {
-          // First chunk received
           setHasReceivedChunk(true);
 
-          // Append each chunk to the existing assistant message
           setMessages((prev) => {
             const updatedMessages = [...prev];
             const lastIndex = updatedMessages.length - 1;
@@ -103,9 +103,11 @@ function Chatbot() {
 
             return updatedMessages;
           });
+        },
+        (status) => {
+          setConnectionStatus(status);
         }
       );
-
     } catch (error) {
       console.error("Chatbot streaming error:", error);
 
@@ -125,9 +127,10 @@ function Chatbot() {
         return updatedMessages;
       });
 
-    } finally {
+    }finally {
       setLoading(false);
       setHasReceivedChunk(false);
+      setConnectionStatus("");
     }
   }
 
@@ -204,18 +207,23 @@ function Chatbot() {
                         : "rounded-2xl rounded-bl-sm border border-white/10 bg-[#2d2e32] text-gray-100"
                     }`}
                   >
-                    {isWaiting ? (
-                      <div
-                        className="flex h-5 items-center gap-1.5"
-                        aria-label="Jix is typing"
-                      >
-                        <span className="h-2 w-2 rounded-full bg-yellow-400 motion-safe:animate-bounce [animation-delay:-0.3s]" />
-                        <span className="h-2 w-2 rounded-full bg-yellow-400 motion-safe:animate-bounce [animation-delay:-0.15s]" />
-                        <span className="h-2 w-2 rounded-full bg-yellow-400 motion-safe:animate-bounce" />
+                    
+                  {isWaiting ? (
+                    <div className="flex items-center gap-2">
+                      <div className="flex h-5 items-center gap-2">
+                        <span className="h-1.5 w-1.5 rounded-full bg-yellow-400 motion-safe:animate-pulse" />
                       </div>
-                    ) : (
-                      message.content
-                    )}
+
+                      <span className="text-xs text-gray-300">
+                        {connectionStatus === "connecting"
+                          ? "Connecting with Jix..."
+                          : "Jix is thinking..."}
+                      </span>
+                    </div>
+                  ) : (
+                    message.content
+                  )}
+
                   </div>
                 </div>
               );

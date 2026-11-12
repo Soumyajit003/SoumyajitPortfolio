@@ -24,11 +24,71 @@ export async function sendChatMessage(sessionId, message) {
   return data;
 }
 
+const sleep = (ms) =>
+  new Promise((resolve) => setTimeout(resolve, ms));
+
+async function waitForBackend(onStatus) {
+  const maxWaitTime = 120000; // 2 minutes
+  const retryInterval = 3000; // 3 seconds
+  const requestTimeout = 8000; // 8 seconds
+
+  const startTime = Date.now();
+
+  onStatus?.("connecting");
+
+  while (Date.now() - startTime < maxWaitTime) {
+    try {
+      const controller = new AbortController();
+
+      const timeoutId = setTimeout(
+        () => controller.abort(),
+        requestTimeout
+      );
+
+      try {
+        const response = await fetch(`${API_BASE_URL}/health`, {
+          method: "GET",
+          cache: "no-store",
+          signal: controller.signal,
+        });
+
+        const contentType = response.headers.get("content-type") || "";
+
+        if (response.ok && contentType.includes("application/json")) {
+          const data = await response.json();
+
+          if (data.status === "ok") {
+            return true;
+          }
+        }
+      } finally {
+        clearTimeout(timeoutId);
+      }
+    } catch (error) {
+      // Backend is still starting or temporarily unreachable.
+      console.log("Waiting for backend to become available...");
+    }
+
+    await sleep(retryInterval);
+  }
+
+  throw new Error(
+    "The server is taking longer than expected to start. Please try again."
+  );
+}
+
 export async function sendChatMessageStream(
   sessionId,
   message,
-  onChunk
+  onChunk,
+  onStatus
 ) {
+  // Wait until Render backend is ready
+  await waitForBackend(onStatus);
+
+  // Backend is ready; now request AI generation
+  onStatus?.("thinking");
+
   const response = await fetch(`${API_BASE_URL}/chat/stream`, {
     method: "POST",
     headers: {
@@ -39,6 +99,11 @@ export async function sendChatMessageStream(
       message: message,
     }),
   });
+  const contentType = response.headers.get("content-type") || "";
+
+  if (!contentType.includes("text/event-stream")) {
+    throw new Error("The backend did not return a valid stream.");
+  }
 
   if (!response.ok) {
     const errorData = await response.json();

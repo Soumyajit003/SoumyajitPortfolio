@@ -22,9 +22,22 @@ function Chatbot() {
 
   // UI-only state: floating widget open/closed
   const [isOpen, setIsOpen] = useState(false);
+  // Keeps the window in the DOM while the exit animation plays
+  const [isMounted, setIsMounted] = useState(false);
+
   const messagesEndRef = useRef(null);
   const dialogRef = useRef(null);
   const messagesRef = useRef(null);
+
+  function openChat() {
+    setIsMounted(true);
+    setIsOpen(true);
+  }
+
+  function closeChat() {
+    // Unmounting happens in the dialog's onAnimationEnd
+    setIsOpen(false);
+  }
 
   // UI-only: keep the latest message in view
   useEffect(() => {
@@ -38,7 +51,7 @@ function Chatbot() {
   // window (header, input bar) they are swallowed instead of reaching the page.
   useEffect(() => {
     const dialog = dialogRef.current;
-    if (!isOpen || !dialog) return;
+    if (!isMounted || !dialog) return;
 
     function handleWheel(e) {
       // Stop smooth-scroll libraries (Lenis etc.) listening on window
@@ -63,7 +76,7 @@ function Chatbot() {
 
     dialog.addEventListener("wheel", handleWheel, { passive: false });
     return () => dialog.removeEventListener("wheel", handleWheel);
-  }, [isOpen]);
+  }, [isMounted]);
 
 
   async function handleSendMessage(e) {
@@ -137,12 +150,19 @@ function Chatbot() {
   return (
     <div className="fixed bottom-5 right-5 z-50 flex flex-col items-end gap-3 sm:bottom-6 sm:right-6">
       {/* Chat window */}
-      {isOpen && (
+      {isMounted && (
         <div
           ref={dialogRef}
           role="dialog"
           aria-label="Chat with Jix, Soumyajit's AI assistant"
-          className="flex h-[31rem] max-h-[calc(100vh-7rem)] w-[calc(100vw-2.5rem)] max-w-[27rem] flex-col overflow-hidden rounded-2xl border border-white/10 bg-[#222326]/60 backdrop-blur-2xl text-white shadow-[0_20px_60px_rgba(0,0,0,0.55)] motion-safe:animate-[chatIn_0.2s_ease-out]"
+          onAnimationEnd={(e) => {
+            // Ignore animations bubbling up from children (e.g. the pulsing dot)
+            if (e.target !== e.currentTarget) return;
+            if (!isOpen) setIsMounted(false);
+          }}
+          className={`flex h-[31rem] max-h-[calc(100vh-7rem)] w-[calc(100vw-2.5rem)] max-w-[27rem] flex-col overflow-hidden rounded-2xl border border-white/10 bg-[#222326]/60 backdrop-blur-2xl text-white shadow-[0_20px_60px_rgba(0,0,0,0.55)] ${
+            isOpen ? "chat-in" : "chat-out pointer-events-none"
+          }`}
         >
           {/* Header */}
           <div className="flex items-center gap-3 border-b border-white/10 bg-[#1b1c1e]/60 px-4 py-3">
@@ -163,7 +183,7 @@ function Chatbot() {
 
             <button
               type="button"
-              onClick={() => setIsOpen(false)}
+              onClick={closeChat}
               aria-label="Close chat"
               className="rounded-lg p-2 text-gray-400 transition hover:bg-white/10 hover:text-[#FFC700] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FFC700]"
             >
@@ -261,7 +281,7 @@ function Chatbot() {
       {/* Floating launcher */}
       <button
         type="button"
-        onClick={() => setIsOpen((open) => !open)}
+        onClick={() => (isOpen ? closeChat() : openChat())}
         aria-label={isOpen ? "Close AI chat" : "Open AI chat"}
         aria-expanded={isOpen}
         className="group flex items-center gap-2 rounded-full bg-yellow-400 px-5 py-3.5 font-bold text-[#222326] shadow-[0_0px_20px_rgba(255,199,0,0.35)] transition hover:scale-105 hover:bg-white focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#222326]"
@@ -275,11 +295,21 @@ function Chatbot() {
         <span className="text-sm">{isOpen ? "Close" : "Ask AI"}</span>
       </button>
 
-      {/* Keyframes for the open animation (scoped to this component) */}
+      {/* Keyframes for the open and close animations (scoped to this component) */}
       <style>{`
         @keyframes chatIn {
           from { opacity: 0; transform: translateY(12px) scale(0.97); }
           to   { opacity: 1; transform: translateY(0) scale(1); }
+        }
+        @keyframes chatOut {
+          from { opacity: 1; transform: translateY(0) scale(1); }
+          to   { opacity: 0; transform: translateY(12px) scale(0.97); }
+        }
+        .chat-in  { transform-origin: bottom right; animation: chatIn 0.2s ease-out both; }
+        .chat-out { transform-origin: bottom right; animation: chatOut 0.18s ease-in forwards; }
+
+        @media (prefers-reduced-motion: reduce) {
+          .chat-in, .chat-out { animation-duration: 0.01ms; }
         }
       `}</style>
     </div>
